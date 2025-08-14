@@ -86,6 +86,9 @@ export default function Home() {
           SÜLEYMAN ÖZDEMİR
         </span>
         <div className="flex gap-8">
+          <a href="#about" className="hover:text-[#b8b8d1] transition">
+      About Me
+    </a>
           <a href="#experience" className="hover:text-[#b8b8d1] transition">
             Experience
           </a>
@@ -185,6 +188,40 @@ export default function Home() {
           ))}
         </div>
       </section>
+
+                {/* About Me */}
+<section id="about" className="mt-20 w-full flex flex-col items-center">
+  <h3
+    className="text-2xl font-extrabold mb-8 tracking-widest text-[#b8b8d1]"
+    style={{ fontFamily: "'JetBrains Mono', monospace" }}
+  >
+    ABOUT ME
+  </h3>
+
+  <div className="flex flex-col items-center w-full max-w-5xl bg-[#181a20]/70 rounded-3xl shadow-2xl p-10 border border-[#b8b8d1]/10 mx-auto">
+    <p className="text-lg text-[#a3a3c2] leading-relaxed text-center max-w-3xl">
+      I’m <span className="text-[#b8b8d1] font-semibold">Süleyman</span>, a
+      passionate <span className="text-[#b8b8d1] font-semibold">Frontend Developer</span> 
+      dedicated to crafting elegant, responsive, and high-performance web applications. 
+      My goal is to deliver clean, maintainable code while providing engaging user experiences.
+    </p>
+
+    <p className="text-lg text-[#a3a3c2] leading-relaxed text-center max-w-3xl mt-6">
+      Skilled in modern tools like <span className="text-[#b8b8d1] font-semibold">React</span>, 
+      <span className="text-[#b8b8d1] font-semibold"> Next.js</span>, and 
+      <span className="text-[#b8b8d1] font-semibold"> Tailwind CSS</span>, 
+      I enjoy turning complex ideas into intuitive, visually appealing solutions.
+    </p>
+
+    <p className="text-lg text-[#a3a3c2] leading-relaxed text-center max-w-3xl mt-6">
+      I believe in teamwork, continuous learning, and embracing new challenges. 
+      Currently, I’m open to exciting opportunities where I can grow and contribute 
+      to meaningful projects.
+    </p>
+  </div>
+</section>
+
+
 
       {/* Scroll to top button */}
       {showScrollTop && (
