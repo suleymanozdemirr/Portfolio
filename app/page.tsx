@@ -1,12 +1,18 @@
 "use client"
 
 import { useState, useEffect } from "react"
+import {
+  SiReact,
+  SiNextdotjs,
+  SiTypescript,
+  SiTailwindcss,
+  SiHtml5,
+  SiCss3,
+  SiSass,
+  SiJavascript,
+} from "react-icons/si"
 
 export default function Home() {
-  // Google Fonts: Inter and JetBrains Mono
-  // Add to your globals.css:
-  // @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=JetBrains+Mono:wght@700&display=swap');
-
   const [showScrollTop, setShowScrollTop] = useState(false)
 
   useEffect(() => {
@@ -16,6 +22,50 @@ export default function Home() {
     window.addEventListener("scroll", handleScroll)
     return () => window.removeEventListener("scroll", handleScroll)
   }, [])
+
+  // Tech stack data
+  const techStack = [
+    {
+      name: "React",
+      color: "#4e6e8e",
+      icon: <SiReact className="text-3xl" style={{ color: "#61dafb" }} />,
+    },
+    {
+      name: "Next.js",
+      color: "#b8b8d1",
+      icon: <SiNextdotjs className="text-3xl" style={{ color: "#fff" }} />,
+    },
+    {
+      name: "TypeScript",
+      color: "#3a4d6b",
+      icon: <SiTypescript className="text-3xl" style={{ color: "#3178c6" }} />,
+    },
+    {
+      name: "Tailwind",
+      color: "#4e6e8e",
+      icon: <SiTailwindcss className="text-3xl" style={{ color: "#38bdf8" }} />,
+    },
+    {
+      name: "HTML5",
+      color: "#a36c6c",
+      icon: <SiHtml5 className="text-3xl" style={{ color: "#e34c26" }} />,
+    },
+    {
+      name: "CSS3",
+      color: "#4e6e8e",
+      icon: <SiCss3 className="text-3xl" style={{ color: "#1572b6" }} />,
+    },
+    {
+      name: "SCSS",
+      color: "#a36c8c",
+      icon: <SiSass className="text-3xl" style={{ color: "#cd6799" }} />,
+    },
+    {
+      name: "JavaScript",
+      color: "#b8b86c",
+      icon: <SiJavascript className="text-3xl" style={{ color: "#f7df1e" }} />,
+    },
+  ]
 
   return (
     <div
@@ -82,7 +132,7 @@ export default function Home() {
             </div> */}
             <div className="flex items-center mt-4 gap-5 text-[#a3a3c2]">
               <a
-                href="https://linkedin.com/"
+                href="https://www.linkedin.com/in/suleymanozdemir07/"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-[#b8b8d1] transition flex items-center gap-1"
@@ -96,7 +146,7 @@ export default function Home() {
                 LinkedIn
               </a>
               <a
-                href="https://github.com/"
+                href="https://github.com/suleymanozdemirr"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-[#b8b8d1]  transition flex items-center gap-1"
@@ -125,15 +175,14 @@ export default function Home() {
           TECH STACK
         </h3>
         <div className="flex flex-wrap justify-center gap-7 max-w-3xl">
-          <TechCard name="React" color="#4e6e8e" />
-          <TechCard name="Next.js" color="#b8b8d1" />
-          <TechCard name="TypeScript" color="#3a4d6b" />
-          <TechCard name="Tailwind" color="#4e6e8e" />
-          <TechCard name="HTML5" color="#a36c6c" />
-          <TechCard name="CSS3" color="#4e6e8e" />
-          <TechCard name="SCSS" color="#a36c8c" />
-          <TechCard name="Cypress" color="#6ca38c" />
-          <TechCard name="JavaScript" color="#b8b86c" />
+          {techStack.map((tech) => (
+            <TechCard
+              key={tech.name}
+              name={tech.name}
+              color={tech.color}
+              icon={tech.icon}
+            />
+          ))}
         </div>
       </section>
 
@@ -151,19 +200,32 @@ export default function Home() {
   )
 }
 
-function TechCard({ name, color }: { name: string; color: string }) {
+function TechCard({
+  name,
+  color,
+  icon,
+}: {
+  name: string
+  color: string
+  icon: React.ReactNode
+}) {
   return (
     <div
-      className="flex flex-col items-center justify-center rounded-xl px-6 py-5 shadow-lg hover:scale-105 transition"
+      className="flex flex-col items-center justify-center rounded-xl shadow-lg hover:scale-105 transition"
       style={{
         background: `linear-gradient(135deg, ${color}22 0%, #181a20 100%)`,
         border: `1.5px solid ${color}`,
-        minWidth: 110,
-        minHeight: 90,
+        width: 130,
+        height: 120,
+        minWidth: 130,
+        minHeight: 120,
+        maxWidth: 130,
+        maxHeight: 120,
       }}
     >
+      <div className="mb-2">{icon}</div>
       <span
-        className="text-lg font-bold mb-2"
+        className="text-lg font-bold"
         style={{ color: color, fontFamily: "'JetBrains Mono', monospace" }}
       >
         {name}
