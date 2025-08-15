@@ -12,7 +12,7 @@ import {
   SiJavascript,
 } from "react-icons/si"
 import { projects } from "./data/projects"
-
+import { CgMail } from "react-icons/cg"
 
 export default function Home() {
   const [showScrollTop, setShowScrollTop] = useState(false)
@@ -27,61 +27,58 @@ export default function Home() {
 
   // Tech stack data
   const techStack = [
-  {
-    name: "React",
-    color: "#61dafb",
-    icon: <SiReact className="text-5xl" style={{ color: "#61dafb" }} />,
-  },
-  {
-    name: "Next.js",
-    color: "#ffffff",
-    icon: <SiNextdotjs className="text-5xl" style={{ color: "#fff" }} />,
-  },
-  {
-    name: "TypeScript",
-    color: "#3178c6",
-    icon: <SiTypescript className="text-5xl" style={{ color: "#3178c6" }} />,
-  },
-  {
-    name: "Tailwind CSS",
-    color: "#38bdf8",
-    icon: <SiTailwindcss className="text-5xl" style={{ color: "#38bdf8" }} />,
-  },
-  {
-    name: "HTML5",
-    color: "#e34c26",
-    icon: <SiHtml5 className="text-5xl" style={{ color: "#e34c26" }} />,
-  },
-  {
-    name: "CSS3",
-    color: "#1572b6",
-    icon: <SiCss3 className="text-5xl" style={{ color: "#1572b6" }} />,
-  },
-  {
-    name: "SCSS",
-    color: "#cd6799",
-    icon: <SiSass className="text-5xl" style={{ color: "#cd6799" }} />,
-  },
-  {
-    name: "JavaScript",
-    color: "#f7df1e",
-    icon: <SiJavascript className="text-5xl" style={{ color: "#f7df1e" }} />,
-  },
-  
-]
-
+    {
+      name: "React",
+      color: "#61dafb",
+      icon: <SiReact className="text-5xl" style={{ color: "#61dafb" }} />,
+    },
+    {
+      name: "Next.js",
+      color: "#ffffff",
+      icon: <SiNextdotjs className="text-5xl" style={{ color: "#fff" }} />,
+    },
+    {
+      name: "TypeScript",
+      color: "#3178c6",
+      icon: <SiTypescript className="text-5xl" style={{ color: "#3178c6" }} />,
+    },
+    {
+      name: "Tailwind CSS",
+      color: "#38bdf8",
+      icon: <SiTailwindcss className="text-5xl" style={{ color: "#38bdf8" }} />,
+    },
+    {
+      name: "HTML5",
+      color: "#e34c26",
+      icon: <SiHtml5 className="text-5xl" style={{ color: "#e34c26" }} />,
+    },
+    {
+      name: "CSS3",
+      color: "#1572b6",
+      icon: <SiCss3 className="text-5xl" style={{ color: "#1572b6" }} />,
+    },
+    {
+      name: "SCSS",
+      color: "#cd6799",
+      icon: <SiSass className="text-5xl" style={{ color: "#cd6799" }} />,
+    },
+    {
+      name: "JavaScript",
+      color: "#f7df1e",
+      icon: <SiJavascript className="text-5xl" style={{ color: "#f7df1e" }} />,
+    },
+  ]
 
   return (
     <div
-  className="min-h-screen flex flex-col items-center pb-20"
-  style={{
-    background:
-      "radial-gradient(ellipse at top left, #111216 60%, #07080a 100%)",
-    fontFamily: "'Inter', sans-serif",
-    color: "#d1d5db",
-  }}
->
-
+      className="min-h-screen flex flex-col items-center pb-20"
+      style={{
+        background:
+          "radial-gradient(ellipse at top left, #111216 60%, #07080a 100%)",
+        fontFamily: "'Inter', sans-serif",
+        color: "#d1d5db",
+      }}
+    >
       {/* Navbar */}
       <nav
         className="w-full max-w-5xl mx-auto flex flex-row items-center justify-between px-6 py-8 text-xl  tracking-wide"
@@ -91,13 +88,22 @@ export default function Home() {
           SÜLEYMAN ÖZDEMİR
         </span>
         <div className="flex gap-8">
-          <a href="#experience" className="hover:text-[#f59e0b] transition">
+          <a
+            href="#experience"
+            className="relative hover:text-[#b6b6da] transition duration-300 after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[2px] after:bg-[#b6b6da] after:transition-all after:duration-300 hover:after:w-full"
+          >
             Deneyim
           </a>
-          <a href="#projects" className="hover:text-[#f59e0b] transition">
+          <a
+            href="#projects"
+            className="relative hover:text-[#b6b6da] transition duration-300 after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[2px] after:bg-[#b6b6da] after:transition-all after:duration-300 hover:after:w-full"
+          >
             Projeler
           </a>
-          <a href="#contact" className="hover:text-[#f59e0b] transition">
+          <a
+            href="#footer"
+            className="relative hover:text-[#b6b6da] transition duration-300 after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[2px] after:bg-[#b6b6da] after:transition-all after:duration-300 hover:after:w-full"
+          >
             İletişim
           </a>
         </div>
@@ -172,14 +178,14 @@ export default function Home() {
       </section>
 
       {/* Tech Stack */}
-      <section className="mt-20 w-full flex flex-col items-center">
+      <section className="mt-20 w-full flex flex-col items-start max-w-6xl mx-auto px-20">
         <h3
           className="text-2xl font-extrabold mb-8 tracking-widest text-[#fff]"
           style={{ fontFamily: "'JetBrains Mono', monospace" }}
         >
           YETENEKLER
         </h3>
-        <div className="flex flex-wrap justify-center gap-7 max-w-3xl">
+        <div className="grid grid-cols-5 gap-7">
           {techStack.map((tech) => (
             <TechCard
               key={tech.name}
@@ -191,69 +197,99 @@ export default function Home() {
         </div>
       </section>
 
-{/* Work Experience */}
-<section
-  id="experience"
-  className="mt-20 w-full flex flex-col items-center"
->
-  <h3
-    className="text-2xl font-extrabold mb-8 tracking-widest text-[#fff]"
-    style={{ fontFamily: "'JetBrains Mono', monospace" }}
-  >
-    DENEYİM
-  </h3>
+      {/* Work Experience */}
+      <section
+        id="experience"
+        className="mt-20 w-full flex flex-col items-start max-w-6xl mx-auto px-20"
+      >
+        <h3
+          className="text-2xl font-extrabold mb-8 tracking-widest text-[#fff]"
+          style={{ fontFamily: "'JetBrains Mono', monospace" }}
+        >
+          DENEYİM
+        </h3>
 
-  <div className="max-w-4xl w-full px-6">
-    <div className="flex flex-col md:flex-row gap-6">
-      {/* Tarih */}
-      <div className="min-w-[150px] text-[#a3a3c2] font-medium">
-        2023 - 2024
-      </div>
+        <div className="max-w-4xl w-full px-2">
+          <div className="flex flex-col md:flex-row gap-6">
+            {/* Tarih */}
+            <div className="min-w-[100px] text-[#a3a3c2] font-medium">
+              2023 - 2024
+            </div>
 
-      {/* İçerik */}
-      <div>
-        <h4 className="text-lg font-bold text-[#fff]">
-          Frontend Developer - React.js
-        </h4>
-        <p className="text-[#a3a3c2] mb-4">
-          Morphosium Software · Antalya
-        </p>
+            {/* İçerik */}
+            <div>
+              <h4 className="text-lg font-bold text-[#fff]">
+                Frontend Developer - React.js
+              </h4>
+              <p className="text-[#a3a3c2] mb-4">
+                Morphosium Software · Antalya
+              </p>
 
-        {/* Aşama Listesi */}
-        <ul className="list-disc list-inside text-[#d1d5db] space-y-2 text-sm md:text-base">
-          <li>Redux ve Rest API ve Next.js gibi teknolojileri kullanarak uygulamalar geliştirmek</li>
-          <li>Git ve Github repositories kullanımı</li>
-          <li>Test senaryoları çalıştırma ve hata ayıklama deneyimi</li>
-          <li>Web uygulamalarını tasarlamak, geliştirmek ve sürdürmek için geliştirme ekibiyle işbirliği yaparken, belirlenen gereksinimleri analiz edip, kullanıcı odaklı bir yaklaşımla uygun teknolojileri seçmek ve sürekli iletişim halinde kalarak proje sürecini verimli bir şekilde yönetmek</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+              {/* Aşama Listesi */}
+              <ul className="list-disc list-inside text-[#d1d5db] space-y-2 text-sm md:text-base">
+                <li>
+                  Redux ve Rest API ve Next.js gibi teknolojileri kullanarak
+                  uygulamalar geliştirmek
+                </li>
+                <li>Git ve Github repositories kullanımı</li>
+                <li>Test senaryoları çalıştırma ve hata ayıklama deneyimi</li>
+                <li>
+                  Web uygulamalarını tasarlamak, geliştirmek ve sürdürmek için
+                  geliştirme ekibiyle işbirliği yaparken, belirlenen
+                  gereksinimleri analiz edip, kullanıcı odaklı bir yaklaşımla
+                  uygun teknolojileri seçmek ve sürekli iletişim halinde kalarak
+                  proje sürecini verimli bir şekilde yönetmek
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
 
-{/* Projects Section */}
-<section id="projects" className="mt-20 w-full flex flex-col items-center">
-  <h3
-    className="text-2xl font-extrabold mb-8 tracking-widest text-[#fff]"
-    style={{ fontFamily: "'JetBrains Mono', monospace" }}
-  >
-    PROJELER
-  </h3>
-  <div className="flex flex-wrap justify-center gap-10 max-w-6xl">
-    {projects.map((project) => (
-      <ProjectCard
-        key={project.name}
-        name={project.name}
-        description={project.description}
-        color={project.color}
-        icon={project.icon}
-        image={project.image}
-        link={project.link}
-      />
-    ))}
-  </div>
-</section>
+      {/* Projects Section */}
+      <section
+        id="projects"
+        className="mt-20 w-full flex flex-col items-start max-w-6xl mx-auto px-20"
+      >
+        <h3
+          className="text-2xl font-extrabold mb-8 tracking-widest text-[#fff]"
+          style={{ fontFamily: "'JetBrains Mono', monospace" }}
+        >
+          PROJELER
+        </h3>
+        <div className="flex flex-wrap justify-center gap-10 max-w-6xl">
+          {projects.map((project) => (
+            <ProjectCard
+              key={project.name}
+              name={project.name}
+              description={project.description}
+              color={project.color}
+              icon={project.icon}
+              image={project.image}
+              link={project.link}
+            />
+          ))}
+        </div>
+      </section>
 
+      <footer
+        id="footer"
+        className="mt-20 w-full py-6 border-t border-[#b8b8d1]/10"
+      >
+        <div className="max-w-6xl mx-auto px-12 flex justify-between items-center text-sm text-[#a3a3c2]">
+          <span>
+            © {new Date().getFullYear()} Süleyman Özdemir — Tüm Hakları
+            Saklıdır.
+          </span>
+          <a
+            href="mailto:suleyman07ozdemir@gmail.com"
+            className="flex items-center gap-2 text-[#a3a3c2] font-bold hover:underline transition"
+          >
+            <CgMail className="text-lg" />
+            suleyman07ozdemir@gmail.com
+          </a>
+        </div>
+      </footer>
 
       {/* Scroll to top button */}
       {showScrollTop && (
@@ -280,23 +316,23 @@ function TechCard({
 }) {
   return (
     <div
-      className="flex flex-col items-center justify-center rounded-xl shadow-lg hover:scale-110 transition transform hover:shadow-2xl"
+      className="flex flex-col items-center justify-center rounded-xl shadow-lg hover:scale-105 transition transform hover:shadow-2xl"
       style={{
         background: `linear-gradient(135deg, ${color}33 0%, #181a20 100%)`,
         border: `2px solid ${color}`,
-        width: 140,
-        height: 140,
+        width: 100,
+        height: 100,
         minWidth: 140,
-        minHeight: 140,
-        maxWidth: 140,
-        maxHeight: 140,
+        minHeight: 110,
+        maxWidth: 150,
+        maxHeight: 150,
       }}
     >
-      <div className="mb-3 text-5xl drop-shadow-lg transition-all duration-300 group-hover:scale-125">
+      <div className="mb-2 text-3xl drop-shadow-lg transition-all duration-300 group-hover:scale-110">
         {icon}
       </div>
       <span
-        className="text-lg font-bold tracking-wide transition-colors duration-300 group-hover:text-white"
+        className="text-sm font-bold tracking-wide transition-colors duration-300 group-hover:text-white text-center"
         style={{ color: color, fontFamily: "'JetBrains Mono', monospace" }}
       >
         {name}
@@ -357,4 +393,3 @@ function ProjectCard({
     </a>
   )
 }
-
