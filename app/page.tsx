@@ -11,6 +11,8 @@ import {
   SiSass,
   SiJavascript,
 } from "react-icons/si"
+import { projects } from "./data/projects"
+
 
 export default function Home() {
   const [showScrollTop, setShowScrollTop] = useState(false)
@@ -25,78 +27,78 @@ export default function Home() {
 
   // Tech stack data
   const techStack = [
-    {
-      name: "React",
-      color: "#4e6e8e",
-      icon: <SiReact className="text-3xl" style={{ color: "#61dafb" }} />,
-    },
-    {
-      name: "Next.js",
-      color: "#b8b8d1",
-      icon: <SiNextdotjs className="text-3xl" style={{ color: "#fff" }} />,
-    },
-    {
-      name: "TypeScript",
-      color: "#3a4d6b",
-      icon: <SiTypescript className="text-3xl" style={{ color: "#3178c6" }} />,
-    },
-    {
-      name: "Tailwind",
-      color: "#4e6e8e",
-      icon: <SiTailwindcss className="text-3xl" style={{ color: "#38bdf8" }} />,
-    },
-    {
-      name: "HTML5",
-      color: "#a36c6c",
-      icon: <SiHtml5 className="text-3xl" style={{ color: "#e34c26" }} />,
-    },
-    {
-      name: "CSS3",
-      color: "#4e6e8e",
-      icon: <SiCss3 className="text-3xl" style={{ color: "#1572b6" }} />,
-    },
-    {
-      name: "SCSS",
-      color: "#a36c8c",
-      icon: <SiSass className="text-3xl" style={{ color: "#cd6799" }} />,
-    },
-    {
-      name: "JavaScript",
-      color: "#b8b86c",
-      icon: <SiJavascript className="text-3xl" style={{ color: "#f7df1e" }} />,
-    },
-  ]
+  {
+    name: "React",
+    color: "#61dafb",
+    icon: <SiReact className="text-5xl" style={{ color: "#61dafb" }} />,
+  },
+  {
+    name: "Next.js",
+    color: "#ffffff",
+    icon: <SiNextdotjs className="text-5xl" style={{ color: "#fff" }} />,
+  },
+  {
+    name: "TypeScript",
+    color: "#3178c6",
+    icon: <SiTypescript className="text-5xl" style={{ color: "#3178c6" }} />,
+  },
+  {
+    name: "Tailwind CSS",
+    color: "#38bdf8",
+    icon: <SiTailwindcss className="text-5xl" style={{ color: "#38bdf8" }} />,
+  },
+  {
+    name: "HTML5",
+    color: "#e34c26",
+    icon: <SiHtml5 className="text-5xl" style={{ color: "#e34c26" }} />,
+  },
+  {
+    name: "CSS3",
+    color: "#1572b6",
+    icon: <SiCss3 className="text-5xl" style={{ color: "#1572b6" }} />,
+  },
+  {
+    name: "SCSS",
+    color: "#cd6799",
+    icon: <SiSass className="text-5xl" style={{ color: "#cd6799" }} />,
+  },
+  {
+    name: "JavaScript",
+    color: "#f7df1e",
+    icon: <SiJavascript className="text-5xl" style={{ color: "#f7df1e" }} />,
+  },
+  
+]
+
 
   return (
     <div
-      className="min-h-screen flex flex-col items-center"
-      style={{
-        background:
-          "radial-gradient(ellipse at top left, #111216 60%, #07080a 100%)",
-        fontFamily: "'Inter', sans-serif",
-        color: "#d1d5db",
-      }}
-    >
+  className="min-h-screen flex flex-col items-center pb-20"
+  style={{
+    background:
+      "radial-gradient(ellipse at top left, #111216 60%, #07080a 100%)",
+    fontFamily: "'Inter', sans-serif",
+    color: "#d1d5db",
+  }}
+>
+
       {/* Navbar */}
       <nav
-        className="w-full max-w-5xl mx-auto flex flex-row items-center justify-between px-6 py-8 text-lg  tracking-wide"
+        className="w-full max-w-5xl mx-auto flex flex-row items-center justify-between px-6 py-8 text-xl  tracking-wide"
         style={{ fontFamily: "'JetBrains Mono', monospace" }}
       >
         <span className="text-2xl text-[#b8b8d1] drop-shadow-lg select-none">
           SÜLEYMAN ÖZDEMİR
         </span>
         <div className="flex gap-8">
-          <a href="#about" className="hover:text-[#b8b8d1] transition">
-      About Me
-    </a>
-          <a href="#experience" className="hover:text-[#b8b8d1] transition">
-            Experience
+          <a href="#experience" className="hover:text-[#f59e0b] transition">
+            Deneyim
           </a>
-          <a href="#projects" className="hover:text-[#b8b8d1] transition">
-            Projects
+          <a href="#projects" className="hover:text-[#f59e0b] transition">
+            Projeler
           </a>
-          <a href="#contact" className="hover:text-[#b8b8d1] transition">
-            Contact
+          <a href="#contact" className="hover:text-[#f59e0b] transition">
+            İletişim
           </a>
         </div>
       </nav>
@@ -110,9 +112,9 @@ export default function Home() {
               {/* <img src="/profile.jpg" alt="profile" className="rounded-full w-full h-full object-cover" /> */}
               <span className="text-6xl text-[#b8b8d1]">👤</span>
             </div>
-            <span className="absolute bottom-2 right-2 bg-[#b8b8d1] text-[#181a20] px-2 py-1 rounded-full text-xs font-bold shadow">
+            {/* <span className="absolute bottom-2 right-2 bg-[#b8b8d1] text-[#181a20] px-2 py-1 rounded-full text-xs font-bold shadow">
               SULEYMAN
-            </span>
+            </span> */}
           </div>
           {/* Text */}
           <div className="flex flex-col items-center md:items-start gap-2">
@@ -120,12 +122,12 @@ export default function Home() {
               className="text-4xl font-extrabold text-[#b8b8d1] drop-shadow"
               style={{ fontFamily: "'JetBrains Mono', monospace" }}
             >
-              Hi, I'm <span className="text-[#f4f4f8]">Süleyman</span>
+              Merhaba, Ben <span className="text-[#f4f4f8]">Süleyman</span>
             </h1>
             <h2 className="text-xl font-semibold text-[#a3a3c2] flex items-center gap-3">
               Frontend Software Developer
               <span className="bg-[#b8b8d1] text-[#181a20] px-2 py-0.5 rounded-full text-xs font-bold shadow ml-2">
-                🚀 Open to new opportunities
+                🚀 Yeni fırsatlara açık
               </span>
             </h2>
             {/* <div className="flex items-center mt-2">
@@ -172,10 +174,10 @@ export default function Home() {
       {/* Tech Stack */}
       <section className="mt-20 w-full flex flex-col items-center">
         <h3
-          className="text-2xl font-extrabold mb-8 tracking-widest text-[#b8b8d1]"
+          className="text-2xl font-extrabold mb-8 tracking-widest text-[#fff]"
           style={{ fontFamily: "'JetBrains Mono', monospace" }}
         >
-          TECH STACK
+          YETENEKLER
         </h3>
         <div className="flex flex-wrap justify-center gap-7 max-w-3xl">
           {techStack.map((tech) => (
@@ -189,38 +191,68 @@ export default function Home() {
         </div>
       </section>
 
-                {/* About Me */}
-<section id="about" className="mt-20 w-full flex flex-col items-center">
+{/* Work Experience */}
+<section
+  id="experience"
+  className="mt-20 w-full flex flex-col items-center"
+>
   <h3
-    className="text-2xl font-extrabold mb-8 tracking-widest text-[#b8b8d1]"
+    className="text-2xl font-extrabold mb-8 tracking-widest text-[#fff]"
     style={{ fontFamily: "'JetBrains Mono', monospace" }}
   >
-    ABOUT ME
+    DENEYİM
   </h3>
 
-  <div className="flex flex-col items-center w-full max-w-5xl bg-[#181a20]/70 rounded-3xl shadow-2xl p-10 border border-[#b8b8d1]/10 mx-auto">
-    <p className="text-lg text-[#a3a3c2] leading-relaxed text-center max-w-3xl">
-      I’m <span className="text-[#b8b8d1] font-semibold">Süleyman</span>, a
-      passionate <span className="text-[#b8b8d1] font-semibold">Frontend Developer</span> 
-      dedicated to crafting elegant, responsive, and high-performance web applications. 
-      My goal is to deliver clean, maintainable code while providing engaging user experiences.
-    </p>
+  <div className="max-w-4xl w-full px-6">
+    <div className="flex flex-col md:flex-row gap-6">
+      {/* Tarih */}
+      <div className="min-w-[150px] text-[#a3a3c2] font-medium">
+        2023 - 2024
+      </div>
 
-    <p className="text-lg text-[#a3a3c2] leading-relaxed text-center max-w-3xl mt-6">
-      Skilled in modern tools like <span className="text-[#b8b8d1] font-semibold">React</span>, 
-      <span className="text-[#b8b8d1] font-semibold"> Next.js</span>, and 
-      <span className="text-[#b8b8d1] font-semibold"> Tailwind CSS</span>, 
-      I enjoy turning complex ideas into intuitive, visually appealing solutions.
-    </p>
+      {/* İçerik */}
+      <div>
+        <h4 className="text-lg font-bold text-[#fff]">
+          Frontend Developer - React.js
+        </h4>
+        <p className="text-[#a3a3c2] mb-4">
+          Morphosium Software · Antalya
+        </p>
 
-    <p className="text-lg text-[#a3a3c2] leading-relaxed text-center max-w-3xl mt-6">
-      I believe in teamwork, continuous learning, and embracing new challenges. 
-      Currently, I’m open to exciting opportunities where I can grow and contribute 
-      to meaningful projects.
-    </p>
+        {/* Aşama Listesi */}
+        <ul className="list-disc list-inside text-[#d1d5db] space-y-2 text-sm md:text-base">
+          <li>Redux ve Rest API ve Next.js gibi teknolojileri kullanarak uygulamalar geliştirmek</li>
+          <li>Git ve Github repositories kullanımı</li>
+          <li>Test senaryoları çalıştırma ve hata ayıklama deneyimi</li>
+          <li>Web uygulamalarını tasarlamak, geliştirmek ve sürdürmek için geliştirme ekibiyle işbirliği yaparken, belirlenen gereksinimleri analiz edip, kullanıcı odaklı bir yaklaşımla uygun teknolojileri seçmek ve sürekli iletişim halinde kalarak proje sürecini verimli bir şekilde yönetmek</li>
+        </ul>
+      </div>
+    </div>
   </div>
 </section>
 
+{/* Projects Section */}
+<section id="projects" className="mt-20 w-full flex flex-col items-center">
+  <h3
+    className="text-2xl font-extrabold mb-8 tracking-widest text-[#fff]"
+    style={{ fontFamily: "'JetBrains Mono', monospace" }}
+  >
+    PROJELER
+  </h3>
+  <div className="flex flex-wrap justify-center gap-10 max-w-6xl">
+    {projects.map((project) => (
+      <ProjectCard
+        key={project.name}
+        name={project.name}
+        description={project.description}
+        color={project.color}
+        icon={project.icon}
+        image={project.image}
+        link={project.link}
+      />
+    ))}
+  </div>
+</section>
 
 
       {/* Scroll to top button */}
@@ -248,21 +280,23 @@ function TechCard({
 }) {
   return (
     <div
-      className="flex flex-col items-center justify-center rounded-xl shadow-lg hover:scale-105 transition"
+      className="flex flex-col items-center justify-center rounded-xl shadow-lg hover:scale-110 transition transform hover:shadow-2xl"
       style={{
-        background: `linear-gradient(135deg, ${color}22 0%, #181a20 100%)`,
-        border: `1.5px solid ${color}`,
-        width: 130,
-        height: 120,
-        minWidth: 130,
-        minHeight: 120,
-        maxWidth: 130,
-        maxHeight: 120,
+        background: `linear-gradient(135deg, ${color}33 0%, #181a20 100%)`,
+        border: `2px solid ${color}`,
+        width: 140,
+        height: 140,
+        minWidth: 140,
+        minHeight: 140,
+        maxWidth: 140,
+        maxHeight: 140,
       }}
     >
-      <div className="mb-2">{icon}</div>
+      <div className="mb-3 text-5xl drop-shadow-lg transition-all duration-300 group-hover:scale-125">
+        {icon}
+      </div>
       <span
-        className="text-lg font-bold"
+        className="text-lg font-bold tracking-wide transition-colors duration-300 group-hover:text-white"
         style={{ color: color, fontFamily: "'JetBrains Mono', monospace" }}
       >
         {name}
@@ -270,3 +304,57 @@ function TechCard({
     </div>
   )
 }
+
+function ProjectCard({
+  name,
+  description,
+  color,
+  icon,
+  image,
+  link,
+}: {
+  name: string
+  description: string
+  color: string
+  icon: string
+  image: string
+  link: string
+}) {
+  return (
+    <a
+      href={link}
+      target="_blank"
+      rel="noopener noreferrer"
+      className="flex flex-col rounded-2xl shadow-lg hover:scale-105 transition overflow-hidden"
+      style={{
+        background: `linear-gradient(135deg, ${color}15 0%, #181a20 100%)`,
+        border: `1.5px solid ${color}`,
+        width: 300,
+        height: 350,
+        textDecoration: "none",
+      }}
+    >
+      {/* Image */}
+      <div className="h-40 w-full overflow-hidden">
+        <img
+          src={image}
+          alt={name}
+          className="w-full h-full object-cover hover:scale-110 transition"
+        />
+      </div>
+
+      {/* Content */}
+      <div className="flex flex-col flex-grow p-4">
+        <div className="text-3xl mb-2">{icon}</div>
+        <h4
+          className="text-xl font-bold mb-1"
+          style={{ color: color, fontFamily: "'JetBrains Mono', monospace" }}
+        >
+          {name}
+        </h4>
+        <p className="text-sm text-[#a3a3c2]">{description}</p>
+      </div>
+    </a>
+  )
+}
+
