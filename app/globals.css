@@ -29,6 +29,13 @@
   ::-webkit-scrollbar-thumb:hover {
     background: linear-gradient(to bottom, #0284c7, #0369a1);
   }
+
+  /* Mobile-first responsive improvements */
+  @media (max-width: 640px) {
+    body {
+      font-size: 14px;
+    }
+  }
 }
 
 @layer components {
@@ -145,5 +152,102 @@
   .hover-lift:hover {
     transform: translateY(-8px);
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+  }
+
+  /* Responsive utilities */
+  .mobile-only {
+    @apply block sm:hidden;
+  }
+
+  .desktop-only {
+    @apply hidden sm:block;
+  }
+
+  .tablet-up {
+    @apply hidden md:block;
+  }
+
+  .mobile-up {
+    @apply block md:hidden;
+  }
+
+  /* Touch-friendly improvements */
+  @media (max-width: 768px) {
+    .touch-friendly {
+      min-height: 44px;
+      min-width: 44px;
+    }
+  }
+
+  /* Improved mobile navigation */
+  .mobile-nav {
+    @apply flex flex-col sm:flex-row;
+  }
+
+  .mobile-nav-item {
+    @apply py-2 sm:py-0 px-4 sm:px-0;
+  }
+
+  /* Responsive grid improvements */
+  .responsive-grid {
+    @apply grid gap-4 sm:gap-6 lg:gap-8;
+  }
+
+  .responsive-grid-2 {
+    @apply grid-cols-1 sm:grid-cols-2;
+  }
+
+  .responsive-grid-3 {
+    @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .responsive-grid-4 {
+    @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-4;
+  }
+
+  .responsive-grid-5 {
+    @apply grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5;
+  }
+
+  /* Responsive spacing */
+  .responsive-padding {
+    @apply p-4 sm:p-6 lg:p-8;
+  }
+
+  .responsive-margin {
+    @apply m-4 sm:m-6 lg:m-8;
+  }
+
+  .responsive-gap {
+    @apply gap-4 sm:gap-6 lg:gap-8;
+  }
+
+  /* Responsive text sizes */
+  .responsive-text-sm {
+    @apply text-xs sm:text-sm;
+  }
+
+  .responsive-text-base {
+    @apply text-sm sm:text-base;
+  }
+
+  .responsive-text-lg {
+    @apply text-base sm:text-lg;
+  }
+
+  .responsive-text-xl {
+    @apply text-lg sm:text-xl;
+  }
+
+  .responsive-text-2xl {
+    @apply text-xl sm:text-2xl;
+  }
+
+  .responsive-text-3xl {
+    @apply text-2xl sm:text-3xl;
+  }
+
+  .responsive-text-4xl {
+    @apply text-3xl sm:text-4xl;
   }
 }
