@@ -9,7 +9,7 @@ interface TechCardProps {
 export default function TechCard({ name, color, icon }: TechCardProps) {
   return (
     <div
-      className="flex flex-col items-center justify-center rounded-xl shadow-lg hover:scale-105 transition transform hover:shadow-2xl p-3 sm:p-4 gpu-accelerated optimize-render"
+      className="flex flex-col items-center justify-center rounded-xl shadow-lg hover:scale-105 transition transform hover:shadow-2xl p-3 sm:p-4"
       style={{
         background: `linear-gradient(135deg, ${color}33 0%, #181a20 100%)`,
         border: `2px solid ${color}`,
@@ -17,7 +17,7 @@ export default function TechCard({ name, color, icon }: TechCardProps) {
         minWidth: 80,
       }}
     >
-      <div className="mb-2 text-2xl sm:text-3xl drop-shadow-lg transition-all duration-300 group-hover:scale-110 gpu-accelerated">
+      <div className="mb-2 text-2xl sm:text-3xl drop-shadow-lg transition-all duration-300 group-hover:scale-110">
         {icon}
       </div>
       <span

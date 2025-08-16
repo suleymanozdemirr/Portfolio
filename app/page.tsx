@@ -1,6 +1,6 @@
 "use client"
 
-import { useState, useEffect, useMemo, useCallback, Suspense, lazy } from "react"
+import { useState, useEffect, useMemo, useCallback } from "react"
 import Image from "next/image"
 import {
   SiReact,
@@ -15,10 +15,8 @@ import {
 import { projects } from "./data/projects"
 import { CgMail } from "react-icons/cg"
 import { HiMenu, HiX } from "react-icons/hi"
-
-// Lazy load components for better performance
-const LazyProjectCard = lazy(() => import('./components/ProjectCard'))
-const LazyTechCard = lazy(() => import('./components/TechCard'))
+import ProjectCard from './components/ProjectCard'
+import TechCard from './components/TechCard'
 
 export default function Home() {
   const [showScrollTop, setShowScrollTop] = useState(false)
@@ -239,13 +237,12 @@ export default function Home() {
         </h3>
         <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 lg:gap-7 w-full">
           {techStack.map((tech) => (
-            <Suspense key={tech.name} fallback={<div>Loading...</div>}>
-              <LazyTechCard
-                name={tech.name}
-                color={tech.color}
-                icon={tech.icon}
-              />
-            </Suspense>
+            <TechCard
+              key={tech.name}
+              name={tech.name}
+              color={tech.color}
+              icon={tech.icon}
+            />
           ))}
         </div>
       </section>
@@ -312,16 +309,15 @@ export default function Home() {
         </h3>
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 w-full">
           {projects.map((project) => (
-            <Suspense key={project.name} fallback={<div>Loading...</div>}>
-              <LazyProjectCard
-                name={project.name}
-                description={project.description}
-                color={project.color}
-                icon={project.icon}
-                image={project.image}
-                link={project.link}
-              />
-            </Suspense>
+            <ProjectCard
+              key={project.name}
+              name={project.name}
+              description={project.description}
+              color={project.color}
+              icon={project.icon}
+              image={project.image}
+              link={project.link}
+            />
           ))}
         </div>
       </section>

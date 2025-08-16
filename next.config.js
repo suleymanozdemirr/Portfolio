@@ -1,57 +1,23 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Image optimization
+  // Static export configuration
+  output: 'export',
+  trailingSlash: true,
+  distDir: 'out',
+  
+  // Image optimization for static export
   images: {
-    domains: ['localhost'],
-    unoptimized: false,
-    formats: ['image/webp', 'image/avif'],
-    deviceSizes: [640, 750, 828, 1080, 1200, 1920, 2048, 3840],
-    imageSizes: [16, 32, 48, 64, 96, 128, 256, 384],
-    minimumCacheTTL: 60,
-    dangerouslyAllowSVG: true,
-    contentSecurityPolicy: "default-src 'self'; script-src 'none'; sandbox;",
+    unoptimized: true,
   },
   
-  // Performance optimizations
+  // Disable server-side features for static export
   experimental: {
-    optimizeCss: true,
-    optimizePackageImports: ['react-icons'],
-    turbo: {
-      rules: {
-        '*.svg': {
-          loaders: ['@svgr/webpack'],
-          as: '*.js',
-        },
-      },
-    },
+    appDir: true,
   },
   
-  // Bundle analyzer
-  webpack: (config, { dev, isServer }) => {
-    // Optimize bundle size
-    if (!dev && !isServer) {
-      config.optimization.splitChunks = {
-        chunks: 'all',
-        cacheGroups: {
-          vendor: {
-            test: /[\\/]node_modules[\\/]/,
-            name: 'vendors',
-            chunks: 'all',
-          },
-        },
-      };
-    }
-    
-    return config;
-  },
-  
-  // Compression
+  // Basic optimizations
   compress: true,
-  
-  // Powered by header
   poweredByHeader: false,
-  
-  // React strict mode
   reactStrictMode: true,
 }
 
