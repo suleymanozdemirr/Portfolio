@@ -1,24 +1,20 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-  // Static export configuration
-  output: 'export',
-  trailingSlash: true,
-  distDir: 'out',
-  
-  // Image optimization for static export
+  // Image optimization
   images: {
-    unoptimized: true,
-  },
-  
-  // Disable server-side features for static export
-  experimental: {
-    appDir: true,
+    unoptimized: false,
+    domains: ['localhost'],
   },
   
   // Basic optimizations
   compress: true,
   poweredByHeader: false,
   reactStrictMode: true,
+  
+  // Performance optimizations
+  experimental: {
+    optimizePackageImports: ['react-icons'],
+  },
 }
 
 module.exports = nextConfig
