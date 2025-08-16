@@ -10,6 +10,23 @@
 
   body {
     font-family: "Inter", system-ui, sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* Performance optimizations */
+  * {
+    box-sizing: border-box;
+  }
+
+  /* GPU acceleration for animations */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+
+  /* Optimize paint and layout */
+  .optimize-render {
+    contain: layout style paint;
   }
 
   /* Custom scrollbar */
@@ -30,29 +47,45 @@
     background: linear-gradient(to bottom, #0284c7, #0369a1);
   }
 
-  /* Mobile-first responsive improvements */
-  @media (max-width: 640px) {
-    body {
-      font-size: 14px;
-    }
+  /* Responsive text sizing */
+  h1 {
+    @apply text-2xl sm:text-3xl md:text-4xl lg:text-5xl;
+  }
+
+  h2 {
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl;
+  }
+
+  h3 {
+    @apply text-lg sm:text-xl md:text-2xl lg:text-3xl;
+  }
+
+  p {
+    @apply text-sm sm:text-base md:text-lg;
+  }
+
+  /* Image optimization */
+  img {
+    max-width: 100%;
+    height: auto;
   }
 }
 
 @layer components {
   .btn-primary {
-    @apply bg-primary-600 hover:bg-primary-700 text-white font-medium px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
+    @apply bg-primary-600 hover:bg-primary-700 text-white font-medium px-4 sm:px-6 py-2 sm:py-3 rounded-lg transition-all duration-300 transform hover:scale-105 shadow-lg hover:shadow-xl;
   }
 
   .btn-secondary {
-    @apply bg-transparent border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white font-medium px-6 py-3 rounded-lg transition-all duration-300 transform hover:scale-105;
+    @apply bg-transparent border-2 border-primary-600 text-primary-600 hover:bg-primary-600 hover:text-white font-medium px-4 sm:px-6 py-2 sm:py-3 rounded-lg transition-all duration-300 transform hover:scale-105;
   }
 
   .section-padding {
-    @apply py-16 px-4 sm:px-6 lg:px-8;
+    @apply py-8 sm:py-12 md:py-16 px-4 sm:px-6 lg:px-8;
   }
 
   .container-custom {
-    @apply max-w-7xl mx-auto;
+    @apply max-w-7xl mx-auto px-4 sm:px-6 lg:px-8;
   }
 
   .gradient-text {
@@ -61,6 +94,69 @@
 
   .card-hover {
     @apply transition-all duration-300 hover:transform hover:scale-105 hover:shadow-xl;
+  }
+
+  /* Project card specific styles */
+  .project-card {
+    @apply relative overflow-hidden rounded-2xl shadow-lg transition-all duration-300;
+  }
+
+  .project-card:hover {
+    @apply transform scale-105 shadow-2xl;
+  }
+
+  .project-image {
+    @apply w-full h-full object-cover object-center transition-transform duration-300;
+  }
+
+  .project-card:hover .project-image {
+    @apply scale-110;
+  }
+
+  .project-overlay {
+    @apply absolute inset-0 bg-black/0 transition-all duration-300;
+  }
+
+  .project-card:hover .project-overlay {
+    @apply bg-black/20;
+  }
+
+  /* 3-card layout specific styles */
+  .projects-grid-3 {
+    @apply grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
+  }
+
+  .project-card-3 {
+    @apply h-full flex flex-col;
+  }
+
+  .project-image-3 {
+    @apply h-36 sm:h-40;
+  }
+
+  .project-content-3 {
+    @apply flex-1 flex flex-col p-3 sm:p-4;
+  }
+
+  /* Image positioning utilities */
+  .image-center {
+    object-position: center;
+  }
+
+  .image-top {
+    object-position: top;
+  }
+
+  .image-bottom {
+    object-position: bottom;
+  }
+
+  .image-left {
+    object-position: left;
+  }
+
+  .image-right {
+    object-position: right;
   }
 
   /* Glass morphism effect */
@@ -154,100 +250,97 @@
     box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
   }
 
-  /* Responsive utilities */
-  .mobile-only {
-    @apply block sm:hidden;
+  /* Mobile-first responsive utilities */
+  .mobile-container {
+    @apply px-4 sm:px-6 lg:px-8;
   }
 
-  .desktop-only {
-    @apply hidden sm:block;
+  .mobile-text {
+    @apply text-sm sm:text-base md:text-lg;
   }
 
-  .tablet-up {
-    @apply hidden md:block;
+  .mobile-heading {
+    @apply text-xl sm:text-2xl md:text-3xl lg:text-4xl;
   }
 
-  .mobile-up {
-    @apply block md:hidden;
+  .mobile-spacing {
+    @apply space-y-4 sm:space-y-6 md:space-y-8;
   }
 
-  /* Touch-friendly improvements */
-  @media (max-width: 768px) {
-    .touch-friendly {
-      min-height: 44px;
-      min-width: 44px;
-    }
+  .mobile-grid {
+    @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4;
   }
 
-  /* Improved mobile navigation */
-  .mobile-nav {
-    @apply flex flex-col sm:flex-row;
+  /* Touch-friendly button sizes */
+  .touch-button {
+    @apply min-h-[44px] min-w-[44px];
   }
 
-  .mobile-nav-item {
-    @apply py-2 sm:py-0 px-4 sm:px-0;
+  /* Safe area for mobile devices */
+  .safe-area {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-bottom: env(safe-area-inset-bottom);
   }
 
-  /* Responsive grid improvements */
-  .responsive-grid {
-    @apply grid gap-4 sm:gap-6 lg:gap-8;
+  /* Image loading states */
+  .image-skeleton {
+    @apply animate-pulse bg-gray-300 rounded;
   }
 
-  .responsive-grid-2 {
-    @apply grid-cols-1 sm:grid-cols-2;
+  .image-error {
+    @apply bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center;
   }
 
-  .responsive-grid-3 {
-    @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-3;
-  }
-
-  .responsive-grid-4 {
-    @apply grid-cols-1 sm:grid-cols-2 lg:grid-cols-4;
-  }
-
-  .responsive-grid-5 {
-    @apply grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5;
-  }
-
-  /* Responsive spacing */
-  .responsive-padding {
-    @apply p-4 sm:p-6 lg:p-8;
-  }
-
-  .responsive-margin {
-    @apply m-4 sm:m-6 lg:m-8;
-  }
-
-  .responsive-gap {
+  /* Responsive spacing utilities */
+  .mobile-gap {
     @apply gap-4 sm:gap-6 lg:gap-8;
   }
 
-  /* Responsive text sizes */
-  .responsive-text-sm {
-    @apply text-xs sm:text-sm;
+  .mobile-margin {
+    @apply mt-8 sm:mt-12 lg:mt-16;
   }
 
-  .responsive-text-base {
-    @apply text-sm sm:text-base;
+  .mobile-padding {
+    @apply p-4 sm:p-6 lg:p-8;
   }
+}
 
-  .responsive-text-lg {
-    @apply text-base sm:text-lg;
+/* Responsive breakpoint utilities */
+@media (max-width: 640px) {
+  .mobile-only {
+    display: block;
   }
-
-  .responsive-text-xl {
-    @apply text-lg sm:text-xl;
+  
+  .desktop-only {
+    display: none;
   }
+}
 
-  .responsive-text-2xl {
-    @apply text-xl sm:text-2xl;
+@media (min-width: 641px) {
+  .mobile-only {
+    display: none;
   }
-
-  .responsive-text-3xl {
-    @apply text-2xl sm:text-3xl;
+  
+  .desktop-only {
+    display: block;
   }
+}
 
-  .responsive-text-4xl {
-    @apply text-3xl sm:text-4xl;
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .card-hover:hover {
+    transform: scale(1.02);
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .float,
+  .pulse-slow,
+  .card-hover,
+  .hover-lift {
+    animation: none;
+    transition: none;
   }
 }

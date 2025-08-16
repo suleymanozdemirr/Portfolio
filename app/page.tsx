@@ -1,6 +1,7 @@
 "use client"
 
-import { useState, useEffect } from "react"
+import { useState, useEffect, useMemo, useCallback, Suspense, lazy } from "react"
+import Image from "next/image"
 import {
   SiReact,
   SiNextdotjs,
@@ -12,141 +13,199 @@ import {
   SiJavascript,
 } from "react-icons/si"
 import { projects } from "./data/projects"
+import { CgMail } from "react-icons/cg"
+import { HiMenu, HiX } from "react-icons/hi"
 
+// Lazy load components for better performance
+const LazyProjectCard = lazy(() => import('./components/ProjectCard'))
+const LazyTechCard = lazy(() => import('./components/TechCard'))
 
 export default function Home() {
   const [showScrollTop, setShowScrollTop] = useState(false)
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
 
-  useEffect(() => {
-    const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 400)
-    }
-    window.addEventListener("scroll", handleScroll)
-    return () => window.removeEventListener("scroll", handleScroll)
+  // Memoize scroll handler for better performance
+  const handleScroll = useCallback(() => {
+    setShowScrollTop(window.scrollY > 400)
   }, [])
 
-  // Tech stack data
-  const techStack = [
-  {
-    name: "React",
-    color: "#61dafb",
-    icon: <SiReact className="text-5xl" style={{ color: "#61dafb" }} />,
-  },
-  {
-    name: "Next.js",
-    color: "#ffffff",
-    icon: <SiNextdotjs className="text-5xl" style={{ color: "#fff" }} />,
-  },
-  {
-    name: "TypeScript",
-    color: "#3178c6",
-    icon: <SiTypescript className="text-5xl" style={{ color: "#3178c6" }} />,
-  },
-  {
-    name: "Tailwind CSS",
-    color: "#38bdf8",
-    icon: <SiTailwindcss className="text-5xl" style={{ color: "#38bdf8" }} />,
-  },
-  {
-    name: "HTML5",
-    color: "#e34c26",
-    icon: <SiHtml5 className="text-5xl" style={{ color: "#e34c26" }} />,
-  },
-  {
-    name: "CSS3",
-    color: "#1572b6",
-    icon: <SiCss3 className="text-5xl" style={{ color: "#1572b6" }} />,
-  },
-  {
-    name: "SCSS",
-    color: "#cd6799",
-    icon: <SiSass className="text-5xl" style={{ color: "#cd6799" }} />,
-  },
-  {
-    name: "JavaScript",
-    color: "#f7df1e",
-    icon: <SiJavascript className="text-5xl" style={{ color: "#f7df1e" }} />,
-  },
-  
-]
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll, { passive: true })
+    return () => window.removeEventListener("scroll", handleScroll)
+  }, [handleScroll])
 
+  // Memoize tech stack data to prevent unnecessary re-renders
+  const techStack = useMemo(() => [
+    {
+      name: "React",
+      color: "#61dafb",
+      icon: <SiReact className="text-3xl sm:text-4xl md:text-5xl" style={{ color: "#61dafb" }} />,
+    },
+    {
+      name: "Next.js",
+      color: "#ffffff",
+      icon: <SiNextdotjs className="text-3xl sm:text-4xl md:text-5xl" style={{ color: "#fff" }} />,
+    },
+    {
+      name: "TypeScript",
+      color: "#3178c6",
+      icon: <SiTypescript className="text-3xl sm:text-4xl md:text-5xl" style={{ color: "#3178c6" }} />,
+    },
+    {
+      name: "Tailwind CSS",
+      color: "#38bdf8",
+      icon: <SiTailwindcss className="text-3xl sm:text-4xl md:text-5xl" style={{ color: "#38bdf8" }} />,
+    },
+    {
+      name: "HTML5",
+      color: "#e34c26",
+      icon: <SiHtml5 className="text-3xl sm:text-4xl md:text-5xl" style={{ color: "#e34c26" }} />,
+    },
+    {
+      name: "CSS3",
+      color: "#1572b6",
+      icon: <SiCss3 className="text-3xl sm:text-4xl md:text-5xl" style={{ color: "#1572b6" }} />,
+    },
+    {
+      name: "SCSS",
+      color: "#cd6799",
+      icon: <SiSass className="text-3xl sm:text-4xl md:text-5xl" style={{ color: "#cd6799" }} />,
+    },
+    {
+      name: "JavaScript",
+      color: "#f7df1e",
+      icon: <SiJavascript className="text-3xl sm:text-4xl md:text-5xl" style={{ color: "#f7df1e" }} />,
+    },
+  ], [])
+
+  // Memoize mobile menu toggle handler
+  const toggleMobileMenu = useCallback(() => {
+    setIsMobileMenuOpen(prev => !prev)
+  }, [])
+
+  // Memoize scroll to top handler
+  const scrollToTop = useCallback(() => {
+    window.scrollTo({ top: 0, behavior: "smooth" })
+  }, [])
 
   return (
     <div
-  className="min-h-screen flex flex-col items-center pb-20"
-  style={{
-    background:
-      "radial-gradient(ellipse at top left, #111216 60%, #07080a 100%)",
-    fontFamily: "'Inter', sans-serif",
-    color: "#d1d5db",
-  }}
->
-
+      className="min-h-screen flex flex-col items-center pb-20"
+      style={{
+        background:
+          "radial-gradient(ellipse at top left, #111216 60%, #07080a 100%)",
+        fontFamily: "'Inter', sans-serif",
+        color: "#d1d5db",
+      }}
+    >
       {/* Navbar */}
       <nav
-        className="w-full max-w-5xl mx-auto flex flex-row items-center justify-between px-6 py-8 text-xl  tracking-wide"
+        className="w-full max-w-5xl mx-auto flex flex-row items-center justify-between px-4 sm:px-6 py-6 sm:py-8 text-lg sm:text-xl tracking-wide relative"
         style={{ fontFamily: "'JetBrains Mono', monospace" }}
       >
-        <span className="text-2xl text-[#b8b8d1] drop-shadow-lg select-none">
+        <span className="text-xl sm:text-2xl text-[#b8b8d1] drop-shadow-lg select-none">
           SÜLEYMAN ÖZDEMİR
         </span>
-        <div className="flex gap-8">
-          <a href="#experience" className="hover:text-[#f59e0b] transition">
+        
+        {/* Desktop Navigation */}
+        <div className="hidden md:flex gap-6 lg:gap-8">
+          <a
+            href="#experience"
+            className="relative hover:text-[#b6b6da] transition duration-300 after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[2px] after:bg-[#b6b6da] after:transition-all after:duration-300 hover:after:w-full"
+          >
             Deneyim
           </a>
-          <a href="#projects" className="hover:text-[#f59e0b] transition">
+          <a
+            href="#projects"
+            className="relative hover:text-[#b6b6da] transition duration-300 after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[2px] after:bg-[#b6b6da] after:transition-all after:duration-300 hover:after:w-full"
+          >
             Projeler
           </a>
-          <a href="#contact" className="hover:text-[#f59e0b] transition">
+          <a
+            href="#footer"
+            className="relative hover:text-[#b6b6da] transition duration-300 after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[2px] after:bg-[#b6b6da] after:transition-all after:duration-300 hover:after:w-full"
+          >
             İletişim
           </a>
         </div>
+
+        {/* Mobile Menu Button */}
+        <button
+          className="md:hidden text-[#b8b8d1] hover:text-[#b6b6da] transition-colors"
+          onClick={toggleMobileMenu}
+          aria-label="Toggle mobile menu"
+        >
+          {isMobileMenuOpen ? <HiX size={24} /> : <HiMenu size={24} />}
+        </button>
+
+        {/* Mobile Navigation Menu */}
+        {isMobileMenuOpen && (
+          <div className="absolute top-full left-0 right-0 bg-[#181a20]/95 backdrop-blur-md border-b border-[#b8b8d1]/10 md:hidden z-50">
+            <div className="flex flex-col px-4 py-4 space-y-4">
+              <a
+                href="#experience"
+                className="text-[#b8b8d1] hover:text-[#b6b6da] transition-colors py-2 border-b border-[#b8b8d1]/20"
+                onClick={toggleMobileMenu}
+              >
+                Deneyim
+              </a>
+              <a
+                href="#projects"
+                className="text-[#b8b8d1] hover:text-[#b6b6da] transition-colors py-2 border-b border-[#b8b8d1]/20"
+                onClick={toggleMobileMenu}
+              >
+                Projeler
+              </a>
+              <a
+                href="#footer"
+                className="text-[#b8b8d1] hover:text-[#b6b6da] transition-colors py-2"
+                onClick={toggleMobileMenu}
+              >
+                İletişim
+              </a>
+            </div>
+          </div>
+        )}
       </nav>
 
-      {/* Profile Section - Side by side */}
-      <section className="flex flex-col items-center mt-8 w-full">
-        <div className="flex flex-col md:flex-row items-center justify-center gap-20 w-full max-w-5xl bg-[#181a20]/70 rounded-3xl shadow-2xl p-10 border border-[#b8b8d1]/10 mx-auto">
+      {/* Profile Section - Responsive layout */}
+      <section className="flex flex-col items-center mt-4 sm:mt-8 w-full px-4 sm:px-6">
+        <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-20 w-full max-w-5xl bg-[#181a20]/70 rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-10 border border-[#b8b8d1]/10 mx-auto">
           {/* Profile Picture */}
           <div className="relative group">
-            <div className="rounded-full border-4 border-[#b8b8d1] p-1 w-44 h-44 bg-[#23232e] flex items-center justify-center shadow-lg transition group-hover:scale-105">
-              {/* <img src="/profile.jpg" alt="profile" className="rounded-full w-full h-full object-cover" /> */}
-              <span className="text-6xl text-[#b8b8d1]">👤</span>
+            <div className="rounded-full border-4 border-[#b8b8d1] p-1 w-32 h-32 sm:w-40 sm:h-40 lg:w-44 lg:h-44 bg-[#23232e] flex items-center justify-center shadow-lg transition group-hover:scale-105">
+              <span className="text-4xl sm:text-5xl lg:text-6xl text-[#b8b8d1]">👤</span>
             </div>
-            {/* <span className="absolute bottom-2 right-2 bg-[#b8b8d1] text-[#181a20] px-2 py-1 rounded-full text-xs font-bold shadow">
-              SULEYMAN
-            </span> */}
           </div>
-          {/* Text */}
-          <div className="flex flex-col items-center md:items-start gap-2">
+          
+          {/* Text Content */}
+          <div className="flex flex-col items-center lg:items-start gap-3 text-center lg:text-left">
             <h1
-              className="text-4xl font-extrabold text-[#b8b8d1] drop-shadow"
+              className="text-2xl sm:text-3xl lg:text-4xl font-extrabold text-[#b8b8d1] drop-shadow"
               style={{ fontFamily: "'JetBrains Mono', monospace" }}
             >
               Merhaba, Ben <span className="text-[#f4f4f8]">Süleyman</span>
             </h1>
-            <h2 className="text-xl font-semibold text-[#a3a3c2] flex items-center gap-3">
+            <h2 className="text-lg sm:text-xl font-semibold text-[#a3a3c2] flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
               Frontend Software Developer
-              <span className="bg-[#b8b8d1] text-[#181a20] px-2 py-0.5 rounded-full text-xs font-bold shadow ml-2">
+              <span className="bg-[#b8b8d1] text-[#181a20] px-2 py-1 rounded-full text-xs font-bold shadow">
                 🚀 Yeni fırsatlara açık
               </span>
             </h2>
-            {/* <div className="flex items-center mt-2">
-              <span className="bg-[#b8b8d1] text-[#181a20] px-4 py-1 rounded-full text-sm font-bold shadow">
-                🚀 Open to new opportunities
-              </span>
-            </div> */}
-            <div className="flex items-center mt-4 gap-5 text-[#a3a3c2]">
+            
+            <div className="flex flex-col sm:flex-row items-center mt-4 gap-3 sm:gap-5 text-[#a3a3c2]">
               <a
                 href="https://www.linkedin.com/in/suleymanozdemir07/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#b8b8d1] transition flex items-center gap-1"
+                className="hover:text-[#b8b8d1] transition flex items-center gap-1 text-sm sm:text-base"
               >
                 <img
                   src="/linkedin.svg"
                   alt="LinkedIn"
-                  width={25}
-                  height={25}
+                  width={20}
+                  height={20}
+                  className="sm:w-6 sm:h-6"
                 />
                 LinkedIn
               </a>
@@ -154,10 +213,9 @@ export default function Home() {
                 href="https://github.com/suleymanozdemirr"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="hover:text-[#b8b8d1]  transition flex items-center gap-1"
+                className="hover:text-[#b8b8d1] transition flex items-center gap-1 text-sm sm:text-base"
               >
-                {/* GitHub Color Icon */}
-                <svg width="32" height="32" viewBox="0 0 24 24">
+                <svg width="24" height="24" viewBox="0 0 24 24" className="sm:w-8 sm:h-8">
                   <circle cx="20" cy="20" r="20" fill="#181717" />
                   <path
                     fill="#fff"
@@ -172,93 +230,127 @@ export default function Home() {
       </section>
 
       {/* Tech Stack */}
-      <section className="mt-20 w-full flex flex-col items-center">
+      <section className="mt-16 sm:mt-20 w-full flex flex-col items-start max-w-6xl mx-auto px-4 sm:px-8 lg:px-20">
         <h3
-          className="text-2xl font-extrabold mb-8 tracking-widest text-[#fff]"
+          className="text-xl sm:text-2xl font-extrabold mb-6 sm:mb-8 tracking-widest text-[#fff]"
           style={{ fontFamily: "'JetBrains Mono', monospace" }}
         >
           YETENEKLER
         </h3>
-        <div className="flex flex-wrap justify-center gap-7 max-w-3xl">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4 sm:gap-6 lg:gap-7 w-full">
           {techStack.map((tech) => (
-            <TechCard
-              key={tech.name}
-              name={tech.name}
-              color={tech.color}
-              icon={tech.icon}
-            />
+            <Suspense key={tech.name} fallback={<div>Loading...</div>}>
+              <LazyTechCard
+                name={tech.name}
+                color={tech.color}
+                icon={tech.icon}
+              />
+            </Suspense>
           ))}
         </div>
       </section>
 
-{/* Work Experience */}
-<section
-  id="experience"
-  className="mt-20 w-full flex flex-col items-center"
->
-  <h3
-    className="text-2xl font-extrabold mb-8 tracking-widest text-[#fff]"
-    style={{ fontFamily: "'JetBrains Mono', monospace" }}
-  >
-    DENEYİM
-  </h3>
+      {/* Work Experience */}
+      <section
+        id="experience"
+        className="mt-16 sm:mt-20 w-full flex flex-col items-start max-w-6xl mx-auto px-4 sm:px-8 lg:px-20"
+      >
+        <h3
+          className="text-xl sm:text-2xl font-extrabold mb-6 sm:mb-8 tracking-widest text-[#fff]"
+          style={{ fontFamily: "'JetBrains Mono', monospace" }}
+        >
+          DENEYİM
+        </h3>
 
-  <div className="max-w-4xl w-full px-6">
-    <div className="flex flex-col md:flex-row gap-6">
-      {/* Tarih */}
-      <div className="min-w-[150px] text-[#a3a3c2] font-medium">
-        2023 - 2024
-      </div>
+        <div className="max-w-4xl w-full px-2">
+          <div className="flex flex-col md:flex-row gap-4 md:gap-6">
+            {/* Tarih */}
+            <div className="min-w-[100px] text-[#a3a3c2] font-medium text-sm sm:text-base">
+              2023 - 2024
+            </div>
 
-      {/* İçerik */}
-      <div>
-        <h4 className="text-lg font-bold text-[#fff]">
-          Frontend Developer - React.js
-        </h4>
-        <p className="text-[#a3a3c2] mb-4">
-          Morphosium Software · Antalya
-        </p>
+            {/* İçerik */}
+            <div>
+              <h4 className="text-base sm:text-lg font-bold text-[#fff]">
+                Frontend Developer - React.js
+              </h4>
+              <p className="text-[#a3a3c2] mb-3 sm:mb-4 text-sm sm:text-base">
+                Morphosium Software · Antalya
+              </p>
 
-        {/* Aşama Listesi */}
-        <ul className="list-disc list-inside text-[#d1d5db] space-y-2 text-sm md:text-base">
-          <li>Redux ve Rest API ve Next.js gibi teknolojileri kullanarak uygulamalar geliştirmek</li>
-          <li>Git ve Github repositories kullanımı</li>
-          <li>Test senaryoları çalıştırma ve hata ayıklama deneyimi</li>
-          <li>Web uygulamalarını tasarlamak, geliştirmek ve sürdürmek için geliştirme ekibiyle işbirliği yaparken, belirlenen gereksinimleri analiz edip, kullanıcı odaklı bir yaklaşımla uygun teknolojileri seçmek ve sürekli iletişim halinde kalarak proje sürecini verimli bir şekilde yönetmek</li>
-        </ul>
-      </div>
-    </div>
-  </div>
-</section>
+              {/* Aşama Listesi */}
+              <ul className="list-disc list-inside text-[#d1d5db] space-y-2 text-xs sm:text-sm md:text-base">
+                <li>
+                  Redux ve Rest API ve Next.js gibi teknolojileri kullanarak
+                  uygulamalar geliştirmek
+                </li>
+                <li>Git ve Github repositories kullanımı</li>
+                <li>Test senaryoları çalıştırma ve hata ayıklama deneyimi</li>
+                <li>
+                  Web uygulamalarını tasarlamak, geliştirmek ve sürdürmek için
+                  geliştirme ekibiyle işbirliği yaparken, belirlenen
+                  gereksinimleri analiz edip, kullanıcı odaklı bir yaklaşımla
+                  uygun teknolojileri seçmek ve sürekli iletişim halinde kalarak
+                  proje sürecini verimli bir şekilde yönetmek
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
 
-{/* Projects Section */}
-<section id="projects" className="mt-20 w-full flex flex-col items-center">
-  <h3
-    className="text-2xl font-extrabold mb-8 tracking-widest text-[#fff]"
-    style={{ fontFamily: "'JetBrains Mono', monospace" }}
-  >
-    PROJELER
-  </h3>
-  <div className="flex flex-wrap justify-center gap-10 max-w-6xl">
-    {projects.map((project) => (
-      <ProjectCard
-        key={project.name}
-        name={project.name}
-        description={project.description}
-        color={project.color}
-        icon={project.icon}
-        image={project.image}
-        link={project.link}
-      />
-    ))}
-  </div>
-</section>
+      {/* Projects Section */}
+      <section
+        id="projects"
+        className="mt-16 sm:mt-20 w-full flex flex-col items-center max-w-6xl mx-auto px-4 sm:px-8 lg:px-20"
+      >
+        <h3
+          className="text-xl sm:text-2xl font-extrabold mb-8 sm:mb-12 tracking-widest text-[#fff] w-full text-left"
+          style={{ fontFamily: "'JetBrains Mono', monospace" }}
+        >
+          PROJELER
+        </h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 w-full projects-grid-3">
+          {projects.map((project) => (
+            <Suspense key={project.name} fallback={<div>Loading...</div>}>
+              <LazyProjectCard
+                name={project.name}
+                description={project.description}
+                color={project.color}
+                icon={project.icon}
+                image={project.image}
+                link={project.link}
+              />
+            </Suspense>
+          ))}
+        </div>
+      </section>
+
+      <footer
+        id="footer"
+        className="mt-16 sm:mt-20 w-full py-6 border-t border-[#b8b8d1]/10"
+      >
+        <div className="max-w-6xl mx-auto px-4 sm:px-8 lg:px-12 flex flex-col sm:flex-row justify-between items-center gap-4 text-sm text-[#a3a3c2]">
+          <span className="text-center sm:text-left">
+            © {new Date().getFullYear()} Süleyman Özdemir — Tüm Hakları
+            Saklıdır.
+          </span>
+          <a
+            href="mailto:suleyman07ozdemir@gmail.com"
+            className="flex items-center gap-2 text-[#a3a3c2] font-bold hover:underline transition text-center"
+          >
+            <CgMail className="text-lg" />
+            <span className="hidden sm:inline">suleyman07ozdemir@gmail.com</span>
+            <span className="sm:hidden">Email</span>
+          </a>
+        </div>
+      </footer>
 
       {/* Scroll to top button */}
       {showScrollTop && (
         <button
-          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
-          className="fixed bottom-8 right-8 bg-[#b8b8d1] text-[#181a20] p-3 rounded-full shadow-lg hover:bg-[#a3a3c2] transition"
+          onClick={scrollToTop}
+          className="fixed bottom-4 sm:bottom-8 right-4 sm:right-8 bg-[#b8b8d1] text-[#181a20] p-2 sm:p-3 rounded-full shadow-lg hover:bg-[#a3a3c2] transition z-50 touch-button"
           aria-label="Scroll to top"
         >
           ↑
@@ -267,93 +359,3 @@ export default function Home() {
     </div>
   )
 }
-
-function TechCard({
-  name,
-  color,
-  icon,
-}: {
-  name: string
-  color: string
-  icon: React.ReactNode
-}) {
-  return (
-    <div
-      className="flex flex-col items-center justify-center rounded-xl shadow-lg hover:scale-110 transition transform hover:shadow-2xl"
-      style={{
-        background: `linear-gradient(135deg, ${color}33 0%, #181a20 100%)`,
-        border: `2px solid ${color}`,
-        width: 140,
-        height: 140,
-        minWidth: 140,
-        minHeight: 140,
-        maxWidth: 140,
-        maxHeight: 140,
-      }}
-    >
-      <div className="mb-3 text-5xl drop-shadow-lg transition-all duration-300 group-hover:scale-125">
-        {icon}
-      </div>
-      <span
-        className="text-lg font-bold tracking-wide transition-colors duration-300 group-hover:text-white"
-        style={{ color: color, fontFamily: "'JetBrains Mono', monospace" }}
-      >
-        {name}
-      </span>
-    </div>
-  )
-}
-
-function ProjectCard({
-  name,
-  description,
-  color,
-  icon,
-  image,
-  link,
-}: {
-  name: string
-  description: string
-  color: string
-  icon: string
-  image: string
-  link: string
-}) {
-  return (
-    <a
-      href={link}
-      target="_blank"
-      rel="noopener noreferrer"
-      className="flex flex-col rounded-2xl shadow-lg hover:scale-105 transition overflow-hidden"
-      style={{
-        background: `linear-gradient(135deg, ${color}15 0%, #181a20 100%)`,
-        border: `1.5px solid ${color}`,
-        width: 300,
-        height: 350,
-        textDecoration: "none",
-      }}
-    >
-      {/* Image */}
-      <div className="h-40 w-full overflow-hidden">
-        <img
-          src={image}
-          alt={name}
-          className="w-full h-full object-cover hover:scale-110 transition"
-        />
-      </div>
-
-      {/* Content */}
-      <div className="flex flex-col flex-grow p-4">
-        <div className="text-3xl mb-2">{icon}</div>
-        <h4
-          className="text-xl font-bold mb-1"
-          style={{ color: color, fontFamily: "'JetBrains Mono', monospace" }}
-        >
-          {name}
-        </h4>
-        <p className="text-sm text-[#a3a3c2]">{description}</p>
-      </div>
-    </a>
-  )
-}
-
