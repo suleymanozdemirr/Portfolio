@@ -310,7 +310,7 @@ export default function Home() {
         >
           PROJELER
         </h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 sm:gap-10 lg:gap-12 w-full projects-grid-3">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8 lg:gap-10 w-full">
           {projects.map((project) => (
             <Suspense key={project.name} fallback={<div>Loading...</div>}>
               <LazyProjectCard
