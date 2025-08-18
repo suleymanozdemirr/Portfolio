@@ -11,10 +11,12 @@ import {
   SiCss3,
   SiSass,
   SiJavascript,
+  SiLinkedin,
+  SiGithub,
 } from "react-icons/si"
 import { projects } from "./data/projects"
 import { CgMail } from "react-icons/cg"
-import { HiMenu, HiX } from "react-icons/hi"
+import { HiMenu, HiX, HiDownload } from "react-icons/hi"
 import ProjectCard from './components/ProjectCard'
 import TechCard from './components/TechCard'
 
@@ -171,8 +173,15 @@ export default function Home() {
         <div className="flex flex-col lg:flex-row items-center justify-center gap-8 lg:gap-20 w-full max-w-5xl bg-[#181a20]/70 rounded-2xl sm:rounded-3xl shadow-2xl p-6 sm:p-8 lg:p-10 border border-[#b8b8d1]/10 mx-auto">
           {/* Profile Picture */}
           <div className="relative group">
-            <div className="rounded-full border-4 border-[#b8b8d1] p-1 w-32 h-32 sm:w-40 sm:h-40 lg:w-44 lg:h-44 bg-[#23232e] flex items-center justify-center shadow-lg transition group-hover:scale-105">
-              <span className="text-4xl sm:text-5xl lg:text-6xl text-[#b8b8d1]">👤</span>
+            <div className="relative rounded-full border-4 border-[#b8b8d1] p-1 w-32 h-32 sm:w-40 sm:h-40 lg:w-44 lg:h-44 bg-[#23232e] shadow-lg transition group-hover:scale-105 overflow-hidden">
+              <Image
+                src="/me.jpg"
+                alt="Süleyman Özdemir profil fotoğrafı"
+                fill
+                sizes="(min-width: 1024px) 11rem, (min-width: 640px) 10rem, 8rem"
+                className="object-cover"
+                priority
+              />
             </div>
           </div>
           
@@ -186,41 +195,46 @@ export default function Home() {
             </h1>
             <h2 className="text-lg sm:text-xl font-semibold text-[#a3a3c2] flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
               Frontend Software Developer
-              <span className="bg-[#b8b8d1] text-[#181a20] px-2 py-1 rounded-full text-xs font-bold shadow">
-                🚀 Yeni fırsatlara açık
-              </span>
             </h2>
             
-            <div className="flex flex-col sm:flex-row items-center mt-4 gap-3 sm:gap-5 text-[#a3a3c2]">
+            <div className="flex w-full items-center mt-4 text-[#a3a3c2] justify-between">
+              <div className="flex items-center gap-3 sm:gap-5">
+                <a
+                  href="https://www.linkedin.com/in/suleymanozdemir07/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2 px-3 py-2 rounded-full text-sm sm:text-base
+                             text-[#d1d5db] hover:text-white transition-colors bg-[#1f222a] hover:bg-[#272b35] border border-[#b8b8d1]/10"
+                  aria-label="LinkedIn profili"
+                >
+                  <SiLinkedin className="text-lg sm:text-xl" style={{ color: "#0a66c2" }} />
+                  <span className="font-medium">LinkedIn</span>
+                </a>
+                <a
+                  href="https://github.com/suleymanozdemirr"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="group inline-flex items-center gap-2 px-3 py-2 rounded-full text-sm sm:text-base
+                             text-[#d1d5db] hover:text-white transition-colors bg-[#1f222a] hover:bg-[#272b35] border border-[#b8b8d1]/10"
+                  aria-label="GitHub profili"
+                >
+                  <SiGithub className="text-lg sm:text-xl" />
+                  <span className="font-medium">GitHub</span>
+                </a>
+              </div>
               <a
-                href="https://www.linkedin.com/in/suleymanozdemir07/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-[#b8b8d1] transition flex items-center gap-1 text-sm sm:text-base"
+                href="/Süleyman_Özdemir-Özgeçmiş.pdf"
+                download
+                className="group relative inline-flex items-center gap-2 rounded-full px-4 py-2 text-xs sm:text-sm font-bold
+                           bg-gradient-to-r from-[#c4c4de] via-[#b8b8d1] to-[#a8a8c9]
+                           text-[#181a20] shadow-lg hover:shadow-xl transition-all duration-200
+                           hover:from-[#d5d5ea] hover:to-[#b6b6da]
+                           focus:outline-none focus:ring-2 focus:ring-[#b8b8d1]/60 focus:ring-offset-2 focus:ring-offset-[#181a20]"
+                aria-label="CV / Özgeçmiş indir"
               >
-                <img
-                  src="/linkedin.svg"
-                  alt="LinkedIn"
-                  width={20}
-                  height={20}
-                  className="sm:w-6 sm:h-6"
-                />
-                LinkedIn
-              </a>
-              <a
-                href="https://github.com/suleymanozdemirr"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-[#b8b8d1] transition flex items-center gap-1 text-sm sm:text-base"
-              >
-                <svg width="24" height="24" viewBox="0 0 24 24" className="sm:w-8 sm:h-8">
-                  <circle cx="20" cy="20" r="20" fill="#181717" />
-                  <path
-                    fill="#fff"
-                    d="M12 5.3c-3.7 0-6.7 3-6.7 6.7 0 3 2 5.5 4.7 6.4.3.1.4-.1.4-.3v-1.1c-1.9.4-2.3-.8-2.3-.8-.3-.7-.7-.9-.7-.9-.6-.4 0-.4 0-.4.7 0 1 .7 1 .7.6 1 1.6.7 2 .5.1-.4.2-.7.4-.8-1.5-.2-3-.8-3-3.3 0-.7.2-1.2.6-1.7-.1-.2-.3-.8.1-1.6 0 0 .5-.2 1.7.7.5-.1 1-.2 1.5-.2s1 .1 1.5.2c1.2-.9 1.7-.7 1.7-.7.4.8.2 1.4.1 1.6.4.5.6 1 .6 1.7 0 2.5-1.5 3.1-3 3.3.2.2.4.5.4 1v1.5c0 .2.1.4.4.3 2.7-.9 4.7-3.4 4.7-6.4 0-3.7-3-6.7-6.7-6.7z"
-                  />
-                </svg>
-                GitHub
+                <span className="absolute inset-0 rounded-full opacity-0 group-hover:opacity-100 transition-opacity bg-white/10" />
+                <HiDownload className="text-sm sm:text-base" />
+                <span>CV / Özgeçmiş</span>
               </a>
             </div>
           </div>
@@ -260,20 +274,59 @@ export default function Home() {
         </h3>
 
         <div className="max-w-4xl w-full px-2">
-          <div className="flex flex-col md:flex-row gap-4 md:gap-6">
+          <div className="flex flex-col md:flex-row items-start gap-4 md:gap-6 mb-6">
             {/* Tarih */}
-            <div className="min-w-[100px] text-[#a3a3c2] font-medium text-sm sm:text-base">
-              2023 - 2024
+            <div className="w-28 md:w-36 lg:w-40 shrink-0 text-[#a3a3c2] font-medium text-sm sm:text-base md:text-right leading-5">
+              <div>2024 – 2025</div>
+              <div className="text-xs sm:text-sm text-[#a3a3c2]/60 font-normal leading-tight">Ekim – Ağustos</div>
             </div>
 
             {/* İçerik */}
-            <div>
+            <div className="relative flex-1 pl-4 border-l-2 border-[#b8b8d1]/20">
+              <h4 className="text-base sm:text-lg font-bold text-[#fff]">
+                Yazılım Mühendisi
+              </h4>
+              <p className="text-[#a3a3c2] mb-3 sm:mb-4 text-sm sm:text-base">
+                Maia Mühendislik Enerji · Antalya
+              </p>
+
+              <div className="flex flex-wrap gap-2 mb-3">
+                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs bg-[#b8b8d1]/10 border border-[#b8b8d1]/20 text-[#cfd2e3]">React</span>
+                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs bg-[#b8b8d1]/10 border border-[#b8b8d1]/20 text-[#cfd2e3]">Next.js</span>
+                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs bg-[#b8b8d1]/10 border border-[#b8b8d1]/20 text-[#cfd2e3]">TypeScript</span>
+              </div>
+
+              <ul className="list-disc list-inside text-[#d1d5db] space-y-2 text-xs sm:text-sm md:text-base">
+                <li>Enerji sektöründeki projeler için yazılım çözümleri geliştirme ve teknik destek sağlama</li>
+                <li>Şirket içi iş süreçlerini dijitalleştirmek ve verimliliği artırmak için yazılım uygulamaları üzerinde çalışma</li>
+                <li>Web tabanlı uygulamalar (React, Next.js, TypeScript) geliştirme ve bakım</li>
+                <li>Enerji projelerinin teknik verilerini analiz ederek raporlama ve takip sistemleri oluşturma</li>
+                <li>Ekip içi proje yönetimi süreçlerine yazılım mühendisi bakış açısıyla katkı sağlama</li>
+              </ul>
+            </div>
+          </div>
+          <div className="flex flex-col md:flex-row items-start gap-4 md:gap-6">
+            {/* Tarih */}
+            <div className="w-28 md:w-36 lg:w-40 shrink-0 text-[#a3a3c2] font-medium text-sm sm:text-base md:text-right">
+              <div>2023 - 2024</div>
+              <div className="text-xs sm:text-sm text-[#a3a3c2]/60 font-normal leading-tight">Eylül – Ekim</div>
+            </div>
+
+            {/* İçerik */}
+            <div className="relative flex-1 pl-4 border-l-2 border-[#b8b8d1]/20">
               <h4 className="text-base sm:text-lg font-bold text-[#fff]">
                 Frontend Developer - React.js
               </h4>
               <p className="text-[#a3a3c2] mb-3 sm:mb-4 text-sm sm:text-base">
                 Morphosium Software · Antalya
               </p>
+
+              <div className="flex flex-wrap gap-2 mb-3">
+                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs bg-[#b8b8d1]/10 border border-[#b8b8d1]/20 text-[#cfd2e3]">React</span>
+                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs bg-[#b8b8d1]/10 border border-[#b8b8d1]/20 text-[#cfd2e3]">Next.js</span>
+                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs bg-[#b8b8d1]/10 border border-[#b8b8d1]/20 text-[#cfd2e3]">Redux</span>
+                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs bg-[#b8b8d1]/10 border border-[#b8b8d1]/20 text-[#cfd2e3]">REST API</span>
+              </div>
 
               {/* Aşama Listesi */}
               <ul className="list-disc list-inside text-[#d1d5db] space-y-2 text-xs sm:text-sm md:text-base">
