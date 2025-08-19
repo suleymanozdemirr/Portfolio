@@ -19,6 +19,7 @@ import { CgMail } from "react-icons/cg"
 import { HiMenu, HiX, HiDownload } from "react-icons/hi"
 import ProjectCard from './components/ProjectCard'
 import TechCard from './components/TechCard'
+import { motion } from "framer-motion"
 
 export default function Home() {
   const [showScrollTop, setShowScrollTop] = useState(false)
@@ -102,6 +103,12 @@ export default function Home() {
         {/* Desktop Navigation */}
         <div className="hidden md:flex gap-6 lg:gap-8">
           <a
+            href="#hakkinda"
+            className="relative hover:text-[#b6b6da] transition duration-300 after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[2px] after:bg-[#b6b6da] after:transition-all after:duration-300 hover:after:w-full"
+          >
+            Hakkımda
+          </a>
+          <a
             href="#experience"
             className="relative hover:text-[#b6b6da] transition duration-300 after:content-[''] after:absolute after:left-0 after:-bottom-1 after:w-0 after:h-[2px] after:bg-[#b6b6da] after:transition-all after:duration-300 hover:after:w-full"
           >
@@ -134,6 +141,13 @@ export default function Home() {
         {isMobileMenuOpen && (
           <div className="absolute top-full left-0 right-0 bg-[#181a20]/95 backdrop-blur-md border-b border-[#b8b8d1]/10 md:hidden z-50">
             <div className="flex flex-col px-4 py-4 space-y-4">
+              <a
+                href="#hakkinda"
+                className="text-[#b8b8d1] hover:text-[#b6b6da] transition-colors py-2 border-b border-[#b8b8d1]/20"
+                onClick={toggleMobileMenu}
+              >
+                Hakkımda
+              </a>
               <a
                 href="#experience"
                 className="text-[#b8b8d1] hover:text-[#b6b6da] transition-colors py-2 border-b border-[#b8b8d1]/20"
@@ -234,7 +248,28 @@ export default function Home() {
       </section>
 
       {/* Tech Stack */}
-      <section className="mt-16 sm:mt-20 w-full flex flex-col items-start max-w-6xl mx-auto px-4 sm:px-8 lg:px-20">
+      <section id="hakkinda" className="mt-16 sm:mt-20 w-full flex flex-col items-start max-w-6xl mx-auto px-4 sm:px-8 lg:px-20">
+        <h3
+          className="text-xl sm:text-2xl font-extrabold mb-6 sm:mb-8 tracking-widest text-[#fff]"
+          style={{ fontFamily: "'JetBrains Mono', monospace" }}
+        >
+          HAKKIMDA
+        </h3>
+        {/* Hakkımda metni (Yetenekler üzerine) */}
+        <motion.div
+          className="max-w-4xl text-[#a3a3c2] mb-10 sm:mb-12 pl-4 sm:pl-6 border-l border-[#b8b8d1]/20"
+          initial={{ opacity: 0, y: 8 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, ease: "easeOut" }}
+          viewport={{ once: true, margin: "-100px" }}
+       >
+          <p className="text-sm sm:text-base md:text-[1rem] lg:text-lg leading-relaxed md:leading-8 mb-3">
+            Merhaba, ben Süleyman Özdemir. Bilgisayar mühendisliği mezunu, frontend alanında kendini sürekli geliştiren bir geliştiriciyim. React.js, Tailwind CSS, TypeScript ve Redux gibi modern teknolojilerle aktif olarak projeler geliştiriyor ve güncel ekosistemi yakından takip ediyorum.
+          </p>
+          <p className="text-sm sm:text-base md:text-[1rem] lg:text-lg leading-relaxed md:leading-8">
+            Yeni şeyler öğrenmeye istekli, detaylara önem veren ve kullanıcı odaklı arayüzler geliştirmeyi seven bir yapıya sahibim. Hem bireysel hem de ekip çalışmalarında sorumluluk alabilen, çözüm odaklı biriyim. Öğrenmeye ve üretmeye duyduğum tutku sayesinde yazılım alanında kendimi her gün bir adım daha ileri taşımayı hedefliyorum.
+          </p>
+        </motion.div>
         <h3
           className="text-xl sm:text-2xl font-extrabold mb-6 sm:mb-8 tracking-widest text-[#fff]"
           style={{ fontFamily: "'JetBrains Mono', monospace" }}
