@@ -89,15 +89,7 @@ export default function Home() {
   }, [])
 
   return (
-    <div
-      className="min-h-screen flex flex-col items-center pb-20"
-      style={{
-        background:
-          "radial-gradient(ellipse at top left, #111216 60%, #07080a 100%)",
-        fontFamily: "'Inter', sans-serif",
-        color: "#d1d5db",
-      }}
-    >
+    <div className="min-h-screen flex flex-col items-center pb-20" style={{ fontFamily: "'Inter', sans-serif", color: "#d1d5db" }}>
       {/* Navbar */}
       <nav
         className="w-full max-w-5xl mx-auto flex flex-row items-center justify-between px-4 sm:px-6 py-6 sm:py-8 text-lg sm:text-xl tracking-wide relative"

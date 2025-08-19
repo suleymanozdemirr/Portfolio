@@ -1,5 +1,6 @@
 import type { Metadata, Viewport } from 'next'
 import './globals.css'
+import AnimatedBackground from './components/AnimatedBackground'
 
 export const metadata: Metadata = {
   title: 'Süleyman Özdemir - Frontend Developer Portfolio',
@@ -54,8 +55,13 @@ export default function RootLayout({
         <link rel="dns-prefetch" href="//fonts.googleapis.com" />
         <link rel="dns-prefetch" href="//fonts.gstatic.com" />
       </head>
-      <body className="bg-white text-gray-900 antialiased overflow-x-hidden">
-        {children}
+      <body className="bg-[#0b0d12] text-gray-200 antialiased overflow-x-hidden">
+        <div className="relative min-h-screen">
+          <AnimatedBackground />
+          <div className="relative">
+            {children}
+          </div>
+        </div>
       </body>
     </html>
   )

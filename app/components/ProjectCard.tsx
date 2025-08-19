@@ -40,16 +40,18 @@ export default function ProjectCard({ name, description, color, icon, image, lin
             alt={name}
             width={400}
             height={160}
+            sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
             className={`w-full h-full object-cover object-center transition-all duration-300 ${
               imageLoading ? 'opacity-0' : 'opacity-100 group-hover:scale-110'
             }`}
-            onLoad={() => setImageLoading(false)}
+            onLoadingComplete={() => setImageLoading(false)}
             onError={() => {
               setImageError(true)
               setImageLoading(false)
             }}
             priority={false}
             loading="lazy"
+            unoptimized
           />
         ) : (
           <div className="w-full h-full flex items-center justify-center bg-gradient-to-br from-[#23232e] to-[#2a2a35]">
