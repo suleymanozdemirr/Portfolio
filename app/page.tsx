@@ -17,8 +17,8 @@ import {
 import { projects } from "./data/projects"
 import { CgMail } from "react-icons/cg"
 import { HiMenu, HiX, HiDownload } from "react-icons/hi"
-import ProjectCard from './components/ProjectCard'
-import TechCard from './components/TechCard'
+import ProjectCard from "./components/ProjectCard"
+import TechCard from "./components/TechCard"
 import { motion } from "framer-motion"
 
 export default function Home() {
@@ -36,52 +36,95 @@ export default function Home() {
   }, [handleScroll])
 
   // Memoize tech stack data to prevent unnecessary re-renders
-  const techStack = useMemo(() => [
-    {
-      name: "React",
-      color: "#61dafb",
-      icon: <SiReact className="text-3xl sm:text-4xl md:text-5xl" style={{ color: "#61dafb" }} />,
-    },
-    {
-      name: "Next.js",
-      color: "#ffffff",
-      icon: <SiNextdotjs className="text-3xl sm:text-4xl md:text-5xl" style={{ color: "#fff" }} />,
-    },
-    {
-      name: "TypeScript",
-      color: "#3178c6",
-      icon: <SiTypescript className="text-3xl sm:text-4xl md:text-5xl" style={{ color: "#3178c6" }} />,
-    },
-    {
-      name: "Tailwind CSS",
-      color: "#38bdf8",
-      icon: <SiTailwindcss className="text-3xl sm:text-4xl md:text-5xl" style={{ color: "#38bdf8" }} />,
-    },
-    {
-      name: "HTML5",
-      color: "#e34c26",
-      icon: <SiHtml5 className="text-3xl sm:text-4xl md:text-5xl" style={{ color: "#e34c26" }} />,
-    },
-    {
-      name: "CSS3",
-      color: "#1572b6",
-      icon: <SiCss3 className="text-3xl sm:text-4xl md:text-5xl" style={{ color: "#1572b6" }} />,
-    },
-    {
-      name: "SCSS",
-      color: "#cd6799",
-      icon: <SiSass className="text-3xl sm:text-4xl md:text-5xl" style={{ color: "#cd6799" }} />,
-    },
-    {
-      name: "JavaScript",
-      color: "#f7df1e",
-      icon: <SiJavascript className="text-3xl sm:text-4xl md:text-5xl" style={{ color: "#f7df1e" }} />,
-    },
-  ], [])
+  const techStack = useMemo(
+    () => [
+      {
+        name: "React",
+        color: "#61dafb",
+        icon: (
+          <SiReact
+            className="text-3xl sm:text-4xl md:text-5xl"
+            style={{ color: "#61dafb" }}
+          />
+        ),
+      },
+      {
+        name: "Next.js",
+        color: "#ffffff",
+        icon: (
+          <SiNextdotjs
+            className="text-3xl sm:text-4xl md:text-5xl"
+            style={{ color: "#fff" }}
+          />
+        ),
+      },
+      {
+        name: "TypeScript",
+        color: "#3178c6",
+        icon: (
+          <SiTypescript
+            className="text-3xl sm:text-4xl md:text-5xl"
+            style={{ color: "#3178c6" }}
+          />
+        ),
+      },
+      {
+        name: "Tailwind CSS",
+        color: "#38bdf8",
+        icon: (
+          <SiTailwindcss
+            className="text-3xl sm:text-4xl md:text-5xl"
+            style={{ color: "#38bdf8" }}
+          />
+        ),
+      },
+      {
+        name: "HTML5",
+        color: "#e34c26",
+        icon: (
+          <SiHtml5
+            className="text-3xl sm:text-4xl md:text-5xl"
+            style={{ color: "#e34c26" }}
+          />
+        ),
+      },
+      {
+        name: "CSS3",
+        color: "#1572b6",
+        icon: (
+          <SiCss3
+            className="text-3xl sm:text-4xl md:text-5xl"
+            style={{ color: "#1572b6" }}
+          />
+        ),
+      },
+      {
+        name: "SCSS",
+        color: "#cd6799",
+        icon: (
+          <SiSass
+            className="text-3xl sm:text-4xl md:text-5xl"
+            style={{ color: "#cd6799" }}
+          />
+        ),
+      },
+      {
+        name: "JavaScript",
+        color: "#f7df1e",
+        icon: (
+          <SiJavascript
+            className="text-3xl sm:text-4xl md:text-5xl"
+            style={{ color: "#f7df1e" }}
+          />
+        ),
+      },
+    ],
+    []
+  )
 
   // Memoize mobile menu toggle handler
   const toggleMobileMenu = useCallback(() => {
-    setIsMobileMenuOpen(prev => !prev)
+    setIsMobileMenuOpen((prev) => !prev)
   }, [])
 
   // Memoize scroll to top handler
@@ -90,7 +133,10 @@ export default function Home() {
   }, [])
 
   return (
-    <div className="min-h-screen flex flex-col items-center pb-20" style={{ fontFamily: "'Inter', sans-serif", color: "#d1d5db" }}>
+    <div
+      className="min-h-screen flex flex-col items-center pb-20"
+      style={{ fontFamily: "'Inter', sans-serif", color: "#d1d5db" }}
+    >
       {/* Navbar */}
       <nav
         className="w-full max-w-5xl mx-auto flex flex-row items-center justify-between px-4 sm:px-6 py-6 sm:py-8 text-lg sm:text-xl tracking-wide relative"
@@ -99,7 +145,7 @@ export default function Home() {
         <span className="text-xl sm:text-2xl text-[#b8b8d1] drop-shadow-lg select-none">
           SÜLEYMAN ÖZDEMİR
         </span>
-        
+
         {/* Desktop Navigation */}
         <div className="hidden md:flex gap-6 lg:gap-8">
           <a
@@ -190,7 +236,7 @@ export default function Home() {
               />
             </div>
           </div>
-          
+
           {/* Text Content */}
           <div className="flex flex-col items-center lg:items-start gap-3 text-center lg:text-left">
             <h1
@@ -202,7 +248,7 @@ export default function Home() {
             <h2 className="text-lg sm:text-xl font-semibold text-[#a3a3c2] flex flex-col sm:flex-row items-center gap-2 sm:gap-3">
               Frontend Software Developer
             </h2>
-            
+
             <div className="flex w-full items-center mt-4 text-[#a3a3c2] justify-between">
               <div className="flex items-center gap-3 sm:gap-5">
                 <a
@@ -213,7 +259,10 @@ export default function Home() {
                              text-[#d1d5db] hover:text-white transition-colors bg-[#1f222a] hover:bg-[#272b35] border border-[#b8b8d1]/10"
                   aria-label="LinkedIn profili"
                 >
-                  <SiLinkedin className="text-lg sm:text-xl" style={{ color: "#0a66c2" }} />
+                  <SiLinkedin
+                    className="text-lg sm:text-xl"
+                    style={{ color: "#0a66c2" }}
+                  />
                   <span className="font-medium">LinkedIn</span>
                 </a>
                 <a
@@ -248,7 +297,10 @@ export default function Home() {
       </section>
 
       {/* Tech Stack */}
-      <section id="hakkinda" className="mt-16 sm:mt-20 w-full flex flex-col items-start max-w-6xl mx-auto px-4 sm:px-8 lg:px-20">
+      <section
+        id="hakkinda"
+        className="mt-16 sm:mt-20 w-full flex flex-col items-start max-w-6xl mx-auto px-4 sm:px-8 lg:px-20"
+      >
         <h3
           className="text-xl sm:text-2xl font-extrabold mb-6 sm:mb-8 tracking-widest text-[#fff]"
           style={{ fontFamily: "'JetBrains Mono', monospace" }}
@@ -262,12 +314,20 @@ export default function Home() {
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut" }}
           viewport={{ once: true, margin: "-100px" }}
-       >
+        >
           <p className="text-sm sm:text-base md:text-[1rem] lg:text-lg leading-relaxed md:leading-8 mb-3">
-            Merhaba, ben Süleyman Özdemir. Bilgisayar mühendisliği mezunu, frontend alanında kendini sürekli geliştiren bir geliştiriciyim. React.js, Tailwind CSS, TypeScript ve Redux gibi modern teknolojilerle aktif olarak projeler geliştiriyor ve güncel ekosistemi yakından takip ediyorum.
+            Merhaba, ben Süleyman Özdemir. Bilgisayar mühendisliği mezunu,
+            frontend alanında kendini sürekli geliştiren bir geliştiriciyim.
+            React.js, Tailwind CSS, TypeScript ve Redux gibi modern
+            teknolojilerle aktif olarak projeler geliştiriyor ve güncel
+            ekosistemi yakından takip ediyorum.
           </p>
           <p className="text-sm sm:text-base md:text-[1rem] lg:text-lg leading-relaxed md:leading-8">
-            Yeni şeyler öğrenmeye istekli, detaylara önem veren ve kullanıcı odaklı arayüzler geliştirmeyi seven bir yapıya sahibim. Hem bireysel hem de ekip çalışmalarında sorumluluk alabilen, çözüm odaklı biriyim. Öğrenmeye ve üretmeye duyduğum tutku sayesinde yazılım alanında kendimi her gün bir adım daha ileri taşımayı hedefliyorum.
+            Yeni şeyler öğrenmeye istekli, detaylara önem veren ve kullanıcı
+            odaklı arayüzler geliştirmeyi seven bir yapıya sahibim. Hem bireysel
+            hem de ekip çalışmalarında sorumluluk alabilen, çözüm odaklı
+            biriyim. Öğrenmeye ve üretmeye duyduğum tutku sayesinde yazılım
+            alanında kendimi her gün bir adım daha ileri taşımayı hedefliyorum.
           </p>
         </motion.div>
         <h3
@@ -305,7 +365,9 @@ export default function Home() {
             {/* Tarih */}
             <div className="w-28 md:w-36 lg:w-40 shrink-0 text-[#a3a3c2] font-medium text-sm sm:text-base md:text-right leading-5">
               <div>2024 – 2025</div>
-              <div className="text-xs sm:text-sm text-[#a3a3c2]/60 font-normal leading-tight">Ekim – Ağustos</div>
+              <div className="text-xs sm:text-sm text-[#a3a3c2]/60 font-normal leading-tight">
+                Ekim – Ağustos
+              </div>
             </div>
 
             {/* İçerik */}
@@ -318,17 +380,38 @@ export default function Home() {
               </p>
 
               <div className="flex flex-wrap gap-2 mb-3">
-                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs bg-[#b8b8d1]/10 border border-[#b8b8d1]/20 text-[#cfd2e3]">React</span>
-                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs bg-[#b8b8d1]/10 border border-[#b8b8d1]/20 text-[#cfd2e3]">Next.js</span>
-                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs bg-[#b8b8d1]/10 border border-[#b8b8d1]/20 text-[#cfd2e3]">TypeScript</span>
+                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs bg-[#b8b8d1]/10 border border-[#b8b8d1]/20 text-[#cfd2e3]">
+                  React
+                </span>
+                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs bg-[#b8b8d1]/10 border border-[#b8b8d1]/20 text-[#cfd2e3]">
+                  Next.js
+                </span>
+                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs bg-[#b8b8d1]/10 border border-[#b8b8d1]/20 text-[#cfd2e3]">
+                  TypeScript
+                </span>
               </div>
 
               <ul className="list-disc list-inside text-[#d1d5db] space-y-2 text-xs sm:text-sm md:text-base">
-                <li>Enerji sektöründeki projeler için yazılım çözümleri geliştirme ve teknik destek sağlama</li>
-                <li>Şirket içi iş süreçlerini dijitalleştirmek ve verimliliği artırmak için yazılım uygulamaları üzerinde çalışma</li>
-                <li>Web tabanlı uygulamalar (React, Next.js, TypeScript) geliştirme ve bakım</li>
-                <li>Enerji projelerinin teknik verilerini analiz ederek raporlama ve takip sistemleri oluşturma</li>
-                <li>Ekip içi proje yönetimi süreçlerine yazılım mühendisi bakış açısıyla katkı sağlama</li>
+                <li>
+                  Enerji sektöründeki projeler için yazılım çözümleri geliştirme
+                  ve teknik destek sağlama
+                </li>
+                <li>
+                  Şirket içi iş süreçlerini dijitalleştirmek ve verimliliği
+                  artırmak için yazılım uygulamaları üzerinde çalışma
+                </li>
+                <li>
+                  Web tabanlı uygulamalar (React, Next.js, TypeScript)
+                  geliştirme ve bakım
+                </li>
+                <li>
+                  Enerji projelerinin teknik verilerini analiz ederek raporlama
+                  ve takip sistemleri oluşturma
+                </li>
+                <li>
+                  Ekip içi proje yönetimi süreçlerine yazılım mühendisi bakış
+                  açısıyla katkı sağlama
+                </li>
               </ul>
             </div>
           </div>
@@ -336,7 +419,9 @@ export default function Home() {
             {/* Tarih */}
             <div className="w-28 md:w-36 lg:w-40 shrink-0 text-[#a3a3c2] font-medium text-sm sm:text-base md:text-right">
               <div>2023 - 2024</div>
-              <div className="text-xs sm:text-sm text-[#a3a3c2]/60 font-normal leading-tight">Eylül – Ekim</div>
+              <div className="text-xs sm:text-sm text-[#a3a3c2]/60 font-normal leading-tight">
+                Eylül – Ekim
+              </div>
             </div>
 
             {/* İçerik */}
@@ -349,10 +434,18 @@ export default function Home() {
               </p>
 
               <div className="flex flex-wrap gap-2 mb-3">
-                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs bg-[#b8b8d1]/10 border border-[#b8b8d1]/20 text-[#cfd2e3]">React</span>
-                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs bg-[#b8b8d1]/10 border border-[#b8b8d1]/20 text-[#cfd2e3]">Next.js</span>
-                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs bg-[#b8b8d1]/10 border border-[#b8b8d1]/20 text-[#cfd2e3]">Redux</span>
-                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs bg-[#b8b8d1]/10 border border-[#b8b8d1]/20 text-[#cfd2e3]">REST API</span>
+                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs bg-[#b8b8d1]/10 border border-[#b8b8d1]/20 text-[#cfd2e3]">
+                  React
+                </span>
+                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs bg-[#b8b8d1]/10 border border-[#b8b8d1]/20 text-[#cfd2e3]">
+                  Next.js
+                </span>
+                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs bg-[#b8b8d1]/10 border border-[#b8b8d1]/20 text-[#cfd2e3]">
+                  Redux
+                </span>
+                <span className="px-2 py-0.5 rounded-full text-[10px] sm:text-xs bg-[#b8b8d1]/10 border border-[#b8b8d1]/20 text-[#cfd2e3]">
+                  REST API
+                </span>
               </div>
 
               {/* Aşama Listesi */}
@@ -416,7 +509,9 @@ export default function Home() {
             className="flex items-center gap-2 text-[#a3a3c2] font-bold hover:underline transition text-center"
           >
             <CgMail className="text-lg" />
-            <span className="hidden sm:inline">suleyman07ozdemir@gmail.com</span>
+            <span className="hidden sm:inline">
+              suleyman07ozdemir@gmail.com
+            </span>
             <span className="sm:hidden">Email</span>
           </a>
         </div>
