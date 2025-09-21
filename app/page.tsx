@@ -13,6 +13,7 @@ import {
   SiJavascript,
   SiLinkedin,
   SiGithub,
+  SiRedux,
 } from "react-icons/si"
 import { projects } from "./data/projects"
 import { CgMail } from "react-icons/cg"
@@ -115,6 +116,16 @@ export default function Home() {
           <SiJavascript
             className="text-3xl sm:text-4xl md:text-5xl"
             style={{ color: "#f7df1e" }}
+          />
+        ),
+      },
+      {
+        name: "Redux Toolkit",
+        color: "#764abc",
+        icon: (
+          <SiRedux
+            className="text-3xl sm:text-4xl md:text-5xl"
+            style={{ color: "#764abc" }}
           />
         ),
       },
@@ -296,29 +307,23 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Tech Stack */}
+      {/* About Me Section */}
       <section
         id="hakkinda"
         className="mt-16 sm:mt-20 w-full flex flex-col items-start max-w-6xl mx-auto px-4 sm:px-8 lg:px-20"
       >
         <h3
-          className="text-xl sm:text-2xl font-extrabold mb-6 sm:mb-8 tracking-widest text-[#fff]"
+          className="text-xl sm:text-2xl font-extrabold mb-6 sm:mb-8 tracking-widest text-[#fff] w-full"
           style={{ fontFamily: "'JetBrains Mono', monospace" }}
         >
           HAKKIMDA
         </h3>
-        {/* Hakkımda metni (Yetenekler üzerine) */}
-        <motion.div
-          className="max-w-4xl text-[#a3a3c2] mb-10 sm:mb-12 pl-4 sm:pl-6 border-l border-[#b8b8d1]/20"
-          initial={{ opacity: 0, y: 8 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut" }}
-          viewport={{ once: true, margin: "-100px" }}
-        >
+        {/* Hakkımda metni */}
+        <div className="w-full max-w-4xl text-[#a3a3c2] mb-10 sm:mb-12 pl-4 sm:pl-6 border-l border-[#b8b8d1]/20">
           <p className="text-sm sm:text-base md:text-[1rem] lg:text-lg leading-relaxed md:leading-8 mb-3">
             Merhaba, ben Süleyman Özdemir. Bilgisayar mühendisliği mezunu,
             frontend alanında kendini sürekli geliştiren bir geliştiriciyim.
-            React.js, Tailwind CSS, TypeScript ve Redux gibi modern
+            React.js, Tailwind CSS, TypeScript ve Redux Toolkit gibi modern
             teknolojilerle aktif olarak projeler geliştiriyor ve güncel
             ekosistemi yakından takip ediyorum.
           </p>
@@ -329,9 +334,9 @@ export default function Home() {
             biriyim. Öğrenmeye ve üretmeye duyduğum tutku sayesinde yazılım
             alanında kendimi her gün bir adım daha ileri taşımayı hedefliyorum.
           </p>
-        </motion.div>
+        </div>
         <h3
-          className="text-xl sm:text-2xl font-extrabold mb-6 sm:mb-8 tracking-widest text-[#fff]"
+          className="text-xl sm:text-2xl font-extrabold mb-6 sm:mb-8 tracking-widest text-[#fff] w-full"
           style={{ fontFamily: "'JetBrains Mono', monospace" }}
         >
           YETENEKLER
